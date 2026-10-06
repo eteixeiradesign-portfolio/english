@@ -3,3 +3,6 @@
 
 # preview local (config de Claude Code, no del sitio)
 .claude/
+
+# clon accidental de otro repo
+/english/
