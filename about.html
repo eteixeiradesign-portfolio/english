@@ -27,30 +27,25 @@
   }
   .about-intro h1 .emoji{ font-size:0.8em; }
 
-  /* la foto se superpone al borde derecho de la tarjeta, como en la referencia:
-     ambas ocupan la misma celda del grid */
-  .intro-row{
-    margin-top:30px;
-    display:grid;
-    grid-template-columns:1fr 210px;
+  /* titulo y retrato en una fila; la tarjeta va debajo, a todo el ancho */
+  .intro-top{
+    margin-top:12px;
+    display:flex;
     align-items:center;
+    justify-content:space-between;
+    gap:32px;
+    flex-wrap:wrap;
   }
-  /* la tarjeta ocupa la primera columna y se mete 105px en la del retrato:
-     asi el circulo monta sobre su borde y sobresale, como en la referencia.
-     El padding derecho reserva esa invasion para que el texto no quede debajo. */
   .intro-card{
-    grid-column:1; grid-row:1;
-    margin-right:-105px;
+    margin-top:30px;
     border:1px solid var(--line);
     border-radius:12px;
-    padding:28px 135px 28px 30px;
+    padding:28px 30px;
   }
   .intro-card p{ color:var(--dark2); font-size:15.5px; }
   .intro-card p + p{ margin-top:14px; }
   .intro-photo{
-    grid-column:2; grid-row:1;
-    justify-self:end;
-    position:relative;
+    flex-shrink:0;
     width:210px; height:210px;
     border-radius:50%;
     overflow:hidden;
@@ -67,9 +62,9 @@
   .resume:hover{ gap:12px; }
 
   @media (max-width:720px){
-    .intro-row{ grid-template-columns:1fr; }
-    .intro-card{ grid-row:2; margin-right:0; padding:26px 24px; }
-    .intro-photo{ grid-column:1; grid-row:1; justify-self:start; margin-bottom:20px; width:150px; height:150px; }
+    .intro-top{ gap:20px; }
+    .intro-photo{ width:140px; height:140px; }
+    .intro-card{ padding:26px 24px; }
   }
 
   /* ---------- Bloques de texto ---------- */
@@ -135,17 +130,17 @@
 
   <main id="main">
     <section class="about-intro">
-      <h1>Hi there,<br>I&rsquo;m Emily <span class="emoji">&#128587;&#127996;&zwj;&#9792;&#65039;</span></h1>
-
-      <div class="intro-row">
-        <div class="intro-card">
-          <p>I'm Emily, a UX Product Designer with a strategic focus on systems thinking, research, and solving complex problems within the healthcare industry and other highly regulated, data-sensitive environments. I specialize in translating ambiguous business and compliance challenges into scalable, intuitive digital experiences.</p>
-          <p>Currently at Raven, partnered with Collective Health, I lead product design for Claims and Internal Product areas — designing complex workflows around adjudication, EOBs, appeals/disputes, provider payments, and privacy-sensitive data access. I partner closely with Product, Engineering, and Compliance teams to navigate a highly regulated healthcare ecosystem, balancing business goals, technical constraints, and user needs.</p>
-          <p>I also own the scaling and continuous improvement of our design system, ensuring consistency, efficiency, and cohesion across interconnected platform capabilities.</p>
-        </div>
+      <div class="intro-top">
+        <h1>Hi there,<br>I&rsquo;m Emily <span class="emoji">&#128587;&#127996;&zwj;&#9792;&#65039;</span></h1>
         <div class="intro-photo">
           <img src="images/index-01.webp" alt="Emily Teixeira" width="480" height="480">
         </div>
+      </div>
+
+      <div class="intro-card">
+        <p>I'm Emily, a UX Product Designer with a strategic focus on systems thinking, research, and solving complex problems within the healthcare industry and other highly regulated, data-sensitive environments. I specialize in translating ambiguous business and compliance challenges into scalable, intuitive digital experiences.</p>
+        <p>Currently at Raven, partnered with Collective Health, I lead product design for Claims and Internal Product areas — designing complex workflows around adjudication, EOBs, appeals/disputes, provider payments, and privacy-sensitive data access. I partner closely with Product, Engineering, and Compliance teams to navigate a highly regulated healthcare ecosystem, balancing business goals, technical constraints, and user needs.</p>
+        <p>I also own the scaling and continuous improvement of our design system, ensuring consistency, efficiency, and cohesion across interconnected platform capabilities.</p>
       </div>
 
       <div class="intro-actions">
