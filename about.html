@@ -17,48 +17,87 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-  /* ---------- About ---------- */
-  .about{
-    padding-top:64px;
-    padding-bottom:64px;
+  /* ---------- Intro ---------- */
+  .about-intro{ padding:40px 0 8px; }
+  .about-intro h1{
+    font-weight:600;
+    font-size:clamp(30px, 4.2vw, 44px);
+    line-height:1.18;
+    letter-spacing:-0.02em;
+  }
+  .about-intro h1 .emoji{ font-size:0.8em; }
+
+  /* la foto se superpone al borde derecho de la tarjeta, como en la referencia:
+     ambas ocupan la misma celda del grid */
+  .intro-row{
+    margin-top:30px;
     display:grid;
-    grid-template-columns:200px 1fr;
-    gap:48px;
+    grid-template-columns:1fr 210px;
+    align-items:center;
+  }
+  /* la tarjeta ocupa la primera columna y se mete 105px en la del retrato:
+     asi el circulo monta sobre su borde y sobresale, como en la referencia.
+     El padding derecho reserva esa invasion para que el texto no quede debajo. */
+  .intro-card{
+    grid-column:1; grid-row:1;
+    margin-right:-105px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:28px 135px 28px 30px;
+  }
+  .intro-card p{ color:var(--dark2); font-size:15.5px; }
+  .intro-card p + p{ margin-top:14px; }
+  .intro-photo{
+    grid-column:2; grid-row:1;
+    justify-self:end;
+    position:relative;
+    width:210px; height:210px;
+    border-radius:50%;
+    overflow:hidden;
+    background:linear-gradient(155deg, #FDF5FF 0%, #F3E2FF 100%);
+  }
+  .intro-photo img{ width:100%; height:100%; object-fit:cover; }
+
+  .intro-actions{
+    margin-top:26px;
+    display:flex; align-items:center; gap:20px; flex-wrap:wrap;
+  }
+  .resume{
+    display:inline-flex; align-items:center; gap:7px;
+    color:var(--accent); font-weight:500; font-size:14.5px;
+    transition:gap 0.15s;
+  }
+  .resume:hover{ gap:12px; }
+  .social{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:30px; height:30px;
+    border:1px solid var(--line); border-radius:6px;
+    transition:border-color 0.15s, background 0.15s;
+  }
+  .social svg{ width:15px; height:15px; fill:var(--ink); }
+  .social:hover{ border-color:var(--accent); background:var(--accent-soft); }
+
+  @media (max-width:720px){
+    .intro-row{ grid-template-columns:1fr; }
+    .intro-card{ grid-row:2; margin-right:0; padding:26px 24px; }
+    .intro-photo{ grid-column:1; grid-row:1; justify-self:start; margin-bottom:20px; width:150px; height:150px; }
+  }
+
+  /* ---------- Bloques de texto ---------- */
+  .about-block{
+    margin-top:56px;
+    padding-top:36px;
     border-top:1px solid var(--line);
   }
-  .about .mark{
-    width:120px;
-    height:120px;
-    border-radius:50%;
-    background:var(--accent-soft);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-family:'Inter', sans-serif;
-    font-weight:600;
-    font-size:32px;
-    color:var(--accent);
-    overflow:hidden;
-  }
-  .about .mark img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-  }
-  .about p{
-    color:var(--muted);
-    font-size:15.5px;
-  }
-  .about p + p{ margin-top:14px; }
-
-  @media (max-width:640px){
-    .about{ grid-template-columns:1fr; }
-  }
+  .about-block h2{ font-size:15px; font-weight:600; letter-spacing:-0.005em; }
+  .about-block p{ margin-top:14px; color:var(--dark2); font-size:15.5px; }
+  .about-block .hl{ color:var(--accent); }
+  .about-block strong{ color:var(--ink); font-weight:600; }
 
   /* ---------- Contact ---------- */
   .contact{
-    padding-top:56px;
+    padding-top:36px;
+    margin-top:56px;
     padding-bottom:96px;
     border-top:1px solid var(--line);
   }
@@ -106,13 +145,38 @@
   </header>
 
   <main id="main">
-  <section class="about" id="about">
-      <div class="mark"><img loading="lazy" decoding="async" src="images/index-01.webp" alt="Emily Teixeira"></div>
-      <div>
-        <p>I'm Emily, a UX Product Designer with a strategic focus on systems thinking, research, and solving complex problems within the healthcare industry and other highly regulated, data-sensitive environments. I specialize in translating ambiguous business and compliance challenges into scalable, intuitive digital experiences.</p>
-        <p>Currently at Raven, partnered with Collective Health, I lead product design for Claims and Internal Product areas — designing complex workflows around adjudication, EOBs, appeals/disputes, provider payments, and privacy-sensitive data access. I partner closely with Product, Engineering, and Compliance teams to navigate a highly regulated healthcare ecosystem, balancing business goals, technical constraints, and user needs.</p>
-        <p>I also own the scaling and continuous improvement of our design system, ensuring consistency, efficiency, and cohesion across interconnected platform capabilities.</p>
+    <section class="about-intro">
+      <h1>Hi there,<br>I&rsquo;m Emily <span class="emoji">&#128587;&#127996;&zwj;&#9792;&#65039;</span></h1>
+
+      <div class="intro-row">
+        <div class="intro-card">
+          <p>I'm Emily, a UX Product Designer with a strategic focus on systems thinking, research, and solving complex problems within the healthcare industry and other highly regulated, data-sensitive environments. I specialize in translating ambiguous business and compliance challenges into scalable, intuitive digital experiences.</p>
+          <p>Currently at Raven, partnered with Collective Health, I lead product design for Claims and Internal Product areas — designing complex workflows around adjudication, EOBs, appeals/disputes, provider payments, and privacy-sensitive data access. I partner closely with Product, Engineering, and Compliance teams to navigate a highly regulated healthcare ecosystem, balancing business goals, technical constraints, and user needs.</p>
+          <p>I also own the scaling and continuous improvement of our design system, ensuring consistency, efficiency, and cohesion across interconnected platform capabilities.</p>
+        </div>
+        <div class="intro-photo">
+          <img src="images/index-01.webp" alt="Emily Teixeira" width="480" height="480">
+        </div>
       </div>
+
+      <div class="intro-actions">
+        <a class="resume" href="https://www.linkedin.com/in/emilyteixeira-productdesigner/" target="_blank" rel="noopener noreferrer">Read my resume <span aria-hidden="true">&#8599;</span></a>
+        <a class="social" href="https://www.linkedin.com/in/emilyteixeira-productdesigner/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13Zm1.78 13.02H3.56V9h3.56v11.45ZM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0Z"/></svg></a>
+      </div>
+    </section>
+
+    <section class="about-block">
+      <h2>Where I come from &amp; where I&rsquo;m going</h2>
+      <p>I&rsquo;m Portuguese, grew up in Venezuela, and currently live in Chile. This mix of cultures has allowed me to develop a broad and empathetic view of the world. <span class="hl">I love getting to know new cultures</span> and connecting with people from different backgrounds, which helps me better understand how they think, what motivates them, and how they interact with technology.</p>
+      <p>This global perspective enriches my approach to product design, allowing me to create more inclusive experiences aligned with the real needs of users.</p>
+      <p>I&rsquo;m always excited about new experiences and opportunities that broaden my worldview, both personally and professionally.</p>
+    </section>
+
+    <section class="about-block">
+      <h2>When I&rsquo;m not designing...</h2>
+      <p>You&rsquo;ll probably find me surrounded by plants! &#127793; I have a deep passion for nature, which led me to create <strong>La Jungla</strong>, a space where I share my love for plants, unique plant accessories, and specialty coffee. There&rsquo;s something special about combining greenery with the perfect cup of coffee&mdash;it brings balance, inspiration, and a moment to slow down.</p>
+      <p>I also love traveling, discovering new coffee spots, and trying food from different cultures. Exploring new places, flavors, and traditions fuels my creativity and broadens my perspective&mdash;both in life and in design.</p>
+      <p>My creative side is always looking for something new to explore, whether it&rsquo;s a skill, a craft, or a different way to bring ideas to life. Learning keeps me inspired and constantly evolving.</p>
     </section>
 
   <section class="contact" id="contact">
