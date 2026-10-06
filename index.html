@@ -7,7 +7,7 @@
 <meta name="author" content="Emily Teixeira">
 <meta property="og:title" content="Emily Teixeira — Product Design">
 <meta property="og:description" content="UX Product Designer focused on systems thinking, research, and complex problems in healthcare and other highly regulated, data-sensitive environments. Currently at Raven, partnered with Collective Health.">
-<meta property="og:image" content="images/index-01.webp">
+<meta property="og:image" content="images/case-study-idcards-01.webp">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -15,384 +15,214 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
 <style>
-  :root{
-    --paper:#FFFFFF;
-    --ink:#2C2C2C;
-    --muted:#828282;
-    --line:#CECECE;
-    --accent:#AF61F7;
-    --accent-soft:#FCF8FF;
-    --dark2:#5B5B5B;
-  }
-
-  *{ margin:0; padding:0; box-sizing:border-box; }
-
-  html{ scroll-behavior:smooth; }
-
-  body{
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'Inter', sans-serif;
-    line-height:1.5;
-    -webkit-font-smoothing:antialiased;
-  }
-
-  a{ color:inherit; text-decoration:none; }
-
-  .wrap{
-    max-width:920px;
-    margin:0 auto;
-    padding:0 28px;
-  }
-
-  /* focus visibility */
-  a:focus-visible, button:focus-visible{
-    outline:2px solid var(--accent);
-    outline-offset:3px;
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; }
-  }
-
-  /* ---------- Header ---------- */
-  header{
-    padding:32px 0 24px;
-    display:flex;
-    align-items:baseline;
-    justify-content:space-between;
-    border-bottom:1px solid var(--line);
-  }
-  header .name{
-    font-family:'Inter', sans-serif;
-    font-size:18px;
-    font-weight:600;
-    letter-spacing:-0.01em;
-  }
-  nav{ display:flex; gap:28px; font-size:14px; color:var(--muted); }
-  nav a:hover{ color:var(--ink); }
-
   /* ---------- Hero ---------- */
-  .hero{
-    padding:88px 0 96px;
-  }
+  .hero{ padding:56px 0 48px; }
   .hero h1{
-    font-family:'Inter', sans-serif;
     font-weight:600;
-    font-size:clamp(32px, 4.6vw, 48px);
-    line-height:1.18;
+    font-size:clamp(30px, 4.4vw, 46px);
+    line-height:1.2;
     letter-spacing:-0.02em;
   }
-  .hero p{
-    margin-top:22px;
-    font-size:16px;
-    color:var(--muted);
+  .hero .lede{
+    margin-top:26px;
+    font-size:clamp(17px, 1.9vw, 20px);
+    line-height:1.55;
+    color:var(--dark2);
   }
-  .hero .meta{
-    margin-top:36px;
-    display:flex;
-    gap:22px;
-    font-size:13px;
-    color:var(--muted);
-  }
-  .hero .meta span{ border-left:1px solid var(--line); padding-left:16px; }
-  .hero .meta span:first-child{ border-left:none; padding-left:0; }
+  .hero .lede strong{ color:var(--ink); font-weight:600; }
+  .hero .lede .here{ color:var(--accent); font-weight:500; }
 
-  /* ---------- Section heading ---------- */
-  .section-head{
-    padding-top:64px;
-    padding-bottom:28px;
+  /* fila de datos, con el guion en acento como en la referencia */
+  .hero-meta{
+    margin-top:48px;
+    padding-top:18px;
+    border-top:1px solid var(--line);
     display:flex;
     align-items:baseline;
     justify-content:space-between;
+    gap:20px;
     flex-wrap:wrap;
-    gap:16px;
-  }
-  .section-head h2{
-    font-family:'Inter', sans-serif;
-    font-size:24px;
-    font-weight:600;
-    letter-spacing:-0.01em;
-  }
-
-  /* ---------- Filters ---------- */
-  .filters{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-  }
-  .filter-btn{
-    font-family:'Inter', sans-serif;
-    font-size:13px;
-    padding:7px 14px;
-    border:1px solid var(--line);
-    border-radius:100px;
-    background:transparent;
-    color:var(--muted);
-    cursor:pointer;
-    transition:background 0.15s, color 0.15s, border-color 0.15s;
-  }
-  .filter-btn:hover{ border-color:var(--accent); color:var(--ink); }
-  .filter-btn.active{
-    background:var(--accent);
-    border-color:var(--accent);
-    color:var(--paper);
-  }
-
-  /* ---------- Work list ---------- */
-  .work-list{
-    border-top:1px solid var(--line);
-  }
-  .work-row{
-    display:flex;
-    align-items:baseline;
-    justify-content:space-between;
-    padding:26px 0;
-    border-bottom:1px solid var(--line);
-    cursor:pointer;
-    position:relative;
-    transition:opacity 0.25s ease, transform 0.25s ease;
-  }
-  .work-row.is-hidden{
-    opacity:0;
-    transform:translateY(-4px);
-    display:none;
-  }
-  .work-row .title-group{ display:flex; align-items:baseline; gap:16px; }
-  .work-row h3{
-    font-family:'Inter', sans-serif;
-    font-weight:500;
-    font-size:22px;
-    letter-spacing:-0.01em;
-    transition:color 0.15s;
-  }
-  .work-row:hover h3{ color:var(--accent); }
-  .work-row .tag{
-    font-size:12.5px;
+    font-size:13.5px;
     color:var(--muted);
   }
-  .work-row .year{
-    font-size:13px;
-    color:var(--muted);
-    flex-shrink:0;
+  .hero-meta .facts{ display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; }
+  .hero-meta .facts span + span::before{
+    content:'\2014';
+    color:var(--accent);
+    margin-right:12px;
   }
+  .see-all{
+    display:inline-flex; align-items:center; gap:8px;
+    color:var(--accent); font-weight:500;
+    transition:gap 0.15s;
+  }
+  .see-all:hover{ gap:14px; }
 
-  /* ---------- About ---------- */
-  .about{
-    padding-top:64px;
-    padding-bottom:64px;
-    display:grid;
-    grid-template-columns:200px 1fr;
-    gap:48px;
-    border-top:1px solid var(--line);
-  }
-  .about .mark{
-    width:120px;
-    height:120px;
-    border-radius:50%;
+  /* ---------- Proyectos destacados ---------- */
+  .featured{ padding:48px 0 8px; }
+  .feature + .feature-pair, .feature-pair{ margin-top:56px; }
+  .feature-pair{ display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+  @media (max-width:640px){ .feature-pair{ grid-template-columns:1fr; gap:48px; } }
+
+  .feature h2{ font-size:22px; font-weight:600; letter-spacing:-0.01em; }
+  .feature h2 a{ transition:color 0.15s; }
+  .feature:hover h2 a{ color:var(--accent); }
+  .feature .blurb{ margin-top:6px; font-size:14.5px; color:var(--muted); }
+  .feature .media{
+    margin-top:18px;
+    display:block;
     background:var(--accent-soft);
+    border:1px solid var(--line);
+    border-radius:4px;
+    overflow:hidden;
+    padding:32px;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-family:'Inter', sans-serif;
-    font-weight:600;
-    font-size:32px;
+  }
+  .feature.big .media{ aspect-ratio:16/9; }
+  .feature.small .media{ aspect-ratio:4/3; }
+  .feature .media img{
+    max-width:100%; max-height:100%; width:auto; height:auto;
+    filter:drop-shadow(0 6px 20px rgba(28,27,25,0.16));
+  }
+  /* este proyecto es de research y no tiene captura: bloque tipografico */
+  .feature .media.text-only{ flex-direction:column; gap:10px; text-align:center; padding:28px; }
+  .feature .media.text-only .big-q{ font-size:34px; font-weight:600; color:var(--accent); letter-spacing:-0.02em; }
+  .feature .media.text-only .sub{ font-size:13.5px; color:var(--muted); max-width:240px; }
+  @media (max-width:480px){ .feature .media{ padding:20px; } }
+
+  /* ---------- Experiencia ---------- */
+  .experience{
+    margin-top:80px;
+    padding-top:40px;
+    border-top:1px solid var(--line);
+    display:grid;
+    grid-template-columns:1fr 1.4fr;
+    gap:32px;
+  }
+  @media (max-width:640px){ .experience{ grid-template-columns:1fr; gap:24px; } }
+  .experience h2{ font-size:22px; font-weight:600; letter-spacing:-0.01em; }
+  .exp-list{ display:flex; flex-direction:column; gap:26px; }
+  .exp-item .role{ font-size:14px; font-weight:600; color:var(--ink); }
+  .exp-item .role::after{
+    content:'\2014';
     color:var(--accent);
-    overflow:hidden;
+    margin:0 8px;
+    font-weight:400;
   }
-  .about .mark img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-  }
-  .about p{
-    color:var(--muted);
-    font-size:15.5px;
-  }
-  .about p + p{ margin-top:14px; }
-
-  @media (max-width:640px){
-    .about{ grid-template-columns:1fr; }
-  }
-
-  /* ---------- Contact ---------- */
-  .contact{
-    padding-top:56px;
-    padding-bottom:96px;
-    border-top:1px solid var(--line);
-  }
-  .contact-links{
-    margin-top:24px;
-    display:flex;
-    flex-wrap:wrap;
-    gap:28px;
-    font-size:16px;
-  }
-  .contact-links a{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    color:var(--ink);
-    transition:color 0.15s;
-  }
-  /* logos de marca: colores propios, no heredan currentColor. El viewBox del de Gmail
-     va recortado al dibujo para que pese lo mismo que el cuadrado de LinkedIn */
-  .contact-links svg{ flex-shrink:0; }
-  .contact-links .ico-gmail{ width:22px; height:17px; }
-  .contact-links .ico-li{ width:18px; height:18px; }
-  .contact-links a span{ border-bottom:1px solid var(--line); padding-bottom:2px; transition:border-color 0.15s; }
-  .contact-links a:hover{ color:var(--accent); }
-  .contact-links a:hover span{ border-color:var(--accent); }
-
-  footer{
-    border-top:1px solid var(--line);
-    padding:24px 0 40px;
-    display:flex;
-    justify-content:space-between;
-    font-size:13px;
-    color:var(--muted);
-  }
+  .exp-item .org{ font-size:14px; font-weight:400; color:var(--ink); }
+  .exp-item .years{ margin-top:3px; font-size:13.5px; color:var(--muted); }
+  .exp-item .client{ margin-top:2px; font-size:13px; color:var(--muted); }
+  .visually-hidden{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
 </style>
 </head>
 <body>
 
+<a class="skip-link" href="#main">Skip to content</a>
+
 <div class="wrap">
 
-  <header>
-    <div class="name">Emily Teixeira</div>
-    <nav>
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Emily Teixeira — home">
+      <img src="images/logo-et.png" alt="Emily Teixeira" width="257" height="152">
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="work.html">Work</a>
+      <a href="about.html">About me</a>
+      <a href="about.html#contact">Contact</a>
     </nav>
   </header>
 
-  <section class="hero">
-    <h1>I turn ambiguous problems into clear digital systems.</h1>
-    <p>I'm Emily, a UX Product Designer focused on systems thinking, research, and solving complex problems in healthcare and other highly regulated, data-sensitive environments. Currently at Raven, partnered with Collective Health.</p>
-    <div class="meta">
-      <span>Based in Santiago, Chile</span>
-      <span>Raven × Collective Health</span>
-    </div>
-  </section>
-
-  <section id="work">
-    <div class="section-head">
-      <h2>Selected work</h2>
-      <div class="filters" id="filters" role="group" aria-label="Filter work by discipline">
-        <button type="button" class="filter-btn active" data-filter="todos" aria-pressed="true">All</button>
-        <button type="button" class="filter-btn" data-filter="sistema" aria-pressed="false">Design Systems</button>
-        <button type="button" class="filter-btn" data-filter="movil" aria-pressed="false">Mobile Product</button>
-        <button type="button" class="filter-btn" data-filter="web" aria-pressed="false">Web Product</button>
-        <button type="button" class="filter-btn" data-filter="research" aria-pressed="false">Research</button>
+  <main id="main">
+    <section class="hero">
+      <h1>I turn ambiguous problems into clear digital systems.</h1>
+      <p class="lede"><strong>I&rsquo;m Emily</strong>, a UX Product Designer focused on systems thinking, research, and solving complex problems in healthcare and other highly regulated, data-sensitive environments. Currently at <span class="here">Raven, partnered with Collective Health</span>.</p>
+      <div class="hero-meta">
+        <div class="facts">
+          <span>Based in Santiago, Chile</span>
+          <span>Raven &times; Collective Health</span>
+        </div>
+        <a class="see-all" href="work.html">See all projects <span aria-hidden="true">&darr;</span></a>
       </div>
-    </div>
+    </section>
 
-    <div class="work-list" id="workList">
+    <section class="featured" aria-labelledby="featured-h">
+      <h2 id="featured-h" class="visually-hidden">Featured projects</h2>
 
-      <a class="work-row" data-cat="movil" href="case-study-smartfit.html">
-        <div class="title-group">
-          <h3>SmartFit</h3>
-          <span class="tag">Mobile Product · Fitness App</span>
+      <article class="feature big">
+        <h2><a href="case-study-idcards.html">ID Card Tool</a></h2>
+        <p class="blurb">Web Product &middot; Healthcare &middot; 2025</p>
+        <a class="media" href="case-study-idcards.html" tabindex="-1" aria-hidden="true">
+          <img loading="lazy" decoding="async" src="images/case-study-idcards-01.webp" alt="">
+        </a>
+      </article>
+
+      <div class="feature-pair">
+        <article class="feature small">
+          <h2><a href="case-study-member-research.html">Listening in Spanish</a></h2>
+          <p class="blurb">Research &middot; Healthcare &middot; 2025</p>
+          <a class="media text-only" href="case-study-member-research.html" tabindex="-1" aria-hidden="true">
+            <span class="big-q">&ldquo;&rdquo;</span>
+            <span class="sub">Moderated interviews with Spanish-speaking members</span>
+          </a>
+        </article>
+
+        <article class="feature small">
+          <h2><a href="case-study-accumulators.html">Multi-Tier Accumulators</a></h2>
+          <p class="blurb">Mobile Product &middot; Healthcare &middot; 2024</p>
+          <a class="media" href="case-study-accumulators.html" tabindex="-1" aria-hidden="true">
+            <img loading="lazy" decoding="async" src="images/case-study-accumulators-01.webp" alt="">
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section class="experience" aria-labelledby="exp-h">
+      <h2 id="exp-h">Experience</h2>
+      <div class="exp-list">
+        <div class="exp-item">
+          <div><span class="role">Senior UX Product Designer</span><span class="org">Raven.inc</span></div>
+          <div class="years">Aug 2026 &ndash; Current</div>
+          <div class="client">Staffing: Collective Health</div>
         </div>
-        <span class="year">2022</span>
-      </a>
-
-      <a class="work-row" data-cat="movil" href="case-study-accumulators.html">
-        <div class="title-group">
-          <h3>Multi-Tier Accumulators</h3>
-          <span class="tag">Mobile Product · Healthcare</span>
+        <div class="exp-item">
+          <div><span class="role">Senior UX Product Designer</span><span class="org">CleverIT Group</span></div>
+          <div class="years">May 2024 &ndash; Jul 2026</div>
+          <div class="client">Staffing: Collective Health</div>
         </div>
-        <span class="year">2024</span>
-      </a>
-
-      <a class="work-row" data-cat="research" href="case-study-member-research.html">
-        <div class="title-group">
-          <h3>Listening in Spanish</h3>
-          <span class="tag">Research · Healthcare</span>
+        <div class="exp-item">
+          <div><span class="role">UX/UI Designer</span><span class="org">Duemint</span></div>
+          <div class="years">Jun 2022 &ndash; May 2024</div>
         </div>
-        <span class="year">2025</span>
-      </a>
-
-      <a class="work-row" data-cat="web" href="case-study-duemint.html">
-        <div class="title-group">
-          <h3>Duemint</h3>
-          <span class="tag">Web Product · Fintech</span>
+        <div class="exp-item">
+          <div><span class="role">Junior Web Designer</span><span class="org">DA / Estudio Creativo</span></div>
+          <div class="years">Jul 2021 &ndash; Jun 2022</div>
         </div>
-        <span class="year">2023</span>
-      </a>
+      </div>
+    </section>
 
-      <a class="work-row" data-cat="web" href="case-study-idcards.html">
-        <div class="title-group">
-          <h3>ID Card Tool</h3>
-          <span class="tag">Web Product · Healthcare</span>
-        </div>
-        <span class="year">2025</span>
-      </a>
-
-      <a class="work-row" data-cat="sistema" href="case-study-duemint-design-system.html">
-        <div class="title-group">
-          <h3>Duemint Design System</h3>
-          <span class="tag">Design System · Fintech</span>
-        </div>
-        <span class="year">2023</span>
-      </a>
-
-    </div>
-  </section>
-
-  <section class="about" id="about">
-    <div class="mark"><img loading="lazy" decoding="async" src="images/index-01.webp" alt="Emily Teixeira"></div>
-    <div>
-      <p>I'm Emily, a UX Product Designer with a strategic focus on systems thinking, research, and solving complex problems within the healthcare industry and other highly regulated, data-sensitive environments. I specialize in translating ambiguous business and compliance challenges into scalable, intuitive digital experiences.</p>
-      <p>Currently at Raven, partnered with Collective Health, I lead product design for Claims and Internal Product areas — designing complex workflows around adjudication, EOBs, appeals/disputes, provider payments, and privacy-sensitive data access. I partner closely with Product, Engineering, and Compliance teams to navigate a highly regulated healthcare ecosystem, balancing business goals, technical constraints, and user needs.</p>
-      <p>I also own the scaling and continuous improvement of our design system, ensuring consistency, efficiency, and cohesion across interconnected platform capabilities.</p>
-    </div>
-  </section>
-
-  <section class="contact" id="contact">
-    <div class="section-head" style="padding-bottom:0;">
-      <h2>Let's talk</h2>
-    </div>
-    <div class="contact-links">
-      <a href="mailto:eteixeiradesign@gmail.com"><svg class="ico-gmail" viewBox="3 8 42 32" aria-hidden="true" focusable="false"><path fill="#4CAF50" d="M45 16.2l-5 2.75-5 4.75L35 40h7a3 3 0 0 0 3-3V16.2z"/><path fill="#1E88E5" d="M3 16.2l3.614 1.71L13 23.7V40H6a3 3 0 0 1-3-3V16.2z"/><polygon fill="#E53935" points="35,11.2 24,19.45 13,11.2 12,17 13,23.7 24,31.95 35,23.7 36,17"/><path fill="#C62828" d="M3 12.298V16.2l10 7.5V11.2L9.876 8.859A4.298 4.298 0 0 0 3 12.298z"/><path fill="#FBC02D" d="M45 12.298V16.2l-10 7.5V11.2l3.124-2.341A4.298 4.298 0 0 1 45 12.298z"/></svg><span>eteixeiradesign@gmail.com</span></a>
-      <a href="https://www.linkedin.com/in/emilyteixeira-productdesigner/" target="_blank" rel="noopener noreferrer"><svg class="ico-li" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#0A66C2" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13Zm1.78 13.02H3.56V9h3.56v11.45ZM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0Z"/></svg><span>LinkedIn</span></a>
-    </div>
-  </section>
-
-  <footer>
-    <span>Emily Teixeira</span>
-    <span>© 2026</span>
-  </footer>
+  </main>
 
 </div>
 
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="footer-lead">Let&rsquo;s chat!<br>
+      <a href="mailto:eteixeiradesign@gmail.com">write me an email <span aria-hidden="true">&rarr;</span></a>
+    </p>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="work.html">Work</a>
+      <a href="about.html">About me</a>
+      <a href="https://www.linkedin.com/in/emilyteixeira-productdesigner/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/emilyteixeira-productdesigner/" target="_blank" rel="noopener noreferrer">CV</a>
+    </nav>
+    <div class="footer-base">&copy; 2026 by Emily Teixeira</div>
+  </div>
+</footer>
 
-<script>
-  // ---------- Filtering ----------
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const rows = document.querySelectorAll('.work-row');
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => {
-        b.classList.remove('active');
-        b.setAttribute('aria-pressed', 'false');
-      });
-      btn.classList.add('active');
-      btn.setAttribute('aria-pressed', 'true');
-      const f = btn.dataset.filter;
-
-      rows.forEach(row => {
-        const match = f === 'todos' || row.dataset.cat === f;
-        row.classList.toggle('is-hidden', !match);
-        row.toggleAttribute('hidden', !match);
-      });
-    });
-  });
-</script>
 
 </body>
 </html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="UX Product Designer focused on systems thinking, research, and complex problems in healthcare and other highly regulated, data-sensitive environments.">
+<meta name="author" content="Emily Teixeira">
+<meta property="og:title" content="About me — Emily Teixeira">
+<meta property="og:description" content="UX Product Designer focused on systems thinking, research, and complex problems in healthcare and other highly regulated, data-sensitive environments.">
+<meta property="og:image" content="images/index-01.webp">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<title>About me — Emily Teixeira</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  /* ---------- About ---------- */
+  .about{
+    padding-top:64px;
+    padding-bottom:64px;
+    display:grid;
+    grid-template-columns:200px 1fr;
+    gap:48px;
+    border-top:1px solid var(--line);
+  }
+  .about .mark{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:var(--accent-soft);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:32px;
+    color:var(--accent);
+    overflow:hidden;
+  }
+  .about .mark img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .about p{
+    color:var(--muted);
+    font-size:15.5px;
+  }
+  .about p + p{ margin-top:14px; }
+
+  @media (max-width:640px){
+    .about{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- Contact ---------- */
+  .contact{
+    padding-top:56px;
+    padding-bottom:96px;
+    border-top:1px solid var(--line);
+  }
+  .contact-links{
+    margin-top:24px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:28px;
+    font-size:16px;
+  }
+  .contact-links a{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    color:var(--ink);
+    transition:color 0.15s;
+  }
+  /* logos de marca: colores propios, no heredan currentColor. El viewBox del de Gmail
+     va recortado al dibujo para que pese lo mismo que el cuadrado de LinkedIn */
+  .contact-links svg{ flex-shrink:0; }
+  .contact-links .ico-gmail{ width:22px; height:17px; }
+  .contact-links .ico-li{ width:18px; height:18px; }
+  .contact-links a span{ border-bottom:1px solid var(--line); padding-bottom:2px; transition:border-color 0.15s; }
+  .contact-links a:hover{ color:var(--accent); }
+  .contact-links a:hover span{ border-color:var(--accent); }
+
+
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="wrap">
+
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Emily Teixeira — home">
+      <img src="images/logo-et.png" alt="Emily Teixeira" width="257" height="152">
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="work.html">Work</a>
+      <a href="about.html" aria-current="page">About me</a>
+      <a href="about.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main">
+  <section class="about" id="about">
+      <div class="mark"><img loading="lazy" decoding="async" src="images/index-01.webp" alt="Emily Teixeira"></div>
+      <div>
+        <p>I'm Emily, a UX Product Designer with a strategic focus on systems thinking, research, and solving complex problems within the healthcare industry and other highly regulated, data-sensitive environments. I specialize in translating ambiguous business and compliance challenges into scalable, intuitive digital experiences.</p>
+        <p>Currently at Raven, partnered with Collective Health, I lead product design for Claims and Internal Product areas — designing complex workflows around adjudication, EOBs, appeals/disputes, provider payments, and privacy-sensitive data access. I partner closely with Product, Engineering, and Compliance teams to navigate a highly regulated healthcare ecosystem, balancing business goals, technical constraints, and user needs.</p>
+        <p>I also own the scaling and continuous improvement of our design system, ensuring consistency, efficiency, and cohesion across interconnected platform capabilities.</p>
+      </div>
+    </section>
+
+  <section class="contact" id="contact">
+      <div class="section-head" style="padding-bottom:0;">
+        <h2>Let's talk</h2>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:eteixeiradesign@gmail.com"><svg class="ico-gmail" viewBox="3 8 42 32" aria-hidden="true" focusable="false"><path fill="#4CAF50" d="M45 16.2l-5 2.75-5 4.75L35 40h7a3 3 0 0 0 3-3V16.2z"/><path fill="#1E88E5" d="M3 16.2l3.614 1.71L13 23.7V40H6a3 3 0 0 1-3-3V16.2z"/><polygon fill="#E53935" points="35,11.2 24,19.45 13,11.2 12,17 13,23.7 24,31.95 35,23.7 36,17"/><path fill="#C62828" d="M3 12.298V16.2l10 7.5V11.2L9.876 8.859A4.298 4.298 0 0 0 3 12.298z"/><path fill="#FBC02D" d="M45 12.298V16.2l-10 7.5V11.2l3.124-2.341A4.298 4.298 0 0 1 45 12.298z"/></svg><span>eteixeiradesign@gmail.com</span></a>
+        <a href="https://www.linkedin.com/in/emilyteixeira-productdesigner/" target="_blank" rel="noopener noreferrer"><svg class="ico-li" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#0A66C2" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13Zm1.78 13.02H3.56V9h3.56v11.45ZM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0Z"/></svg><span>LinkedIn</span></a>
+      </div>
+    </section>
+
+  </main>
+
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="footer-lead">Let&rsquo;s chat!<br>
+      <a href="mailto:eteixeiradesign@gmail.com">write me an email <span aria-hidden="true">&rarr;</span></a>
+    </p>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="work.html">Work</a>
+      <a href="about.html">About me</a>
+      <a href="https://www.linkedin.com/in/emilyteixeira-productdesigner/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/emilyteixeira-productdesigner/" target="_blank" rel="noopener noreferrer">CV</a>
+    </nav>
+    <div class="footer-base">&copy; 2026 by Emily Teixeira</div>
+  </div>
+</footer>
+
+</body>
+</html>
