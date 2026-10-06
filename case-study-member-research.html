@@ -140,6 +140,26 @@
   .reflection p{ color:var(--muted); font-size:15.5px; }
   .reflection p + p{ margin-top:12px; }
 
+
+  /* ---------- Showcase ---------- */
+  .gallery-head{ padding-top:56px; padding-bottom:8px; }
+  .gallery-head .eyebrow{ margin-bottom:12px; display:block; }
+  .gallery-head h2{ font-family:'Inter', sans-serif; font-weight:600; font-size:28px; letter-spacing:-0.01em; }
+  .gallery-stack{ display:flex; flex-direction:column; gap:40px; padding:40px 0 8px; }
+  /* mismo tratamiento que el resto de los case studies: tarjeta blanca con aire,
+     la captura centrada con su propia sombra y el caption abajo */
+  .shot{ border:1px solid var(--line); border-radius:4px; overflow:hidden; background:var(--paper); padding:64px; display:flex; flex-direction:column; }
+  .shot img{ width:100%; display:block; margin-block:auto; filter:drop-shadow(0 6px 20px rgba(28,27,25,0.16)); }
+  .shot .cap{ margin:64px -64px -64px; padding:12px 64px; font-size:13px; line-height:20px; color:var(--muted); border-top:1px solid var(--line); background:var(--paper); }
+  @media (max-width:720px){
+    .shot{ padding:32px; }
+    .shot .cap{ margin:32px -32px -32px; padding:12px 32px; }
+  }
+  @media (max-width:480px){
+    .shot{ padding:20px; }
+    .shot .cap{ margin:20px -20px -20px; padding:12px 20px; }
+  }
+
 </style>
 </head>
 <body>
@@ -193,6 +213,19 @@
       <div><b>Output</b><br>Observer notes synthesized into themes</div>
     </div>
   </section>
+
+
+  <div class="gallery-head">
+    <span class="eyebrow">What we were testing</span>
+    <h2>The surface the investment landed on</h2>
+  </div>
+
+  <div class="gallery-stack">
+    <div class="shot">
+      <img loading="lazy" decoding="async" src="images/case-study-member-research-01.webp" alt="Collective Health member site sign-in screen in Spanish, with the language switcher open">
+      <div class="cap">The member site in Spanish &mdash; the language switch members meet before anything else</div>
+    </div>
+  </div>
 
   <section class="stage">
     <span class="eyebrow">Findings</span>
