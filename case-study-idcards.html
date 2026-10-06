@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="From vendor-dependent to self-serve: bringing member ID card template creation, generation, and approval in-house so Card Operations could own the process end to end.">
+<meta name="author" content="Emily Teixeira">
+<meta property="og:title" content="ID Card Tool — Emily Teixeira">
+<meta property="og:description" content="From vendor-dependent to self-serve: bringing member ID card template creation, generation, and approval in-house so Card Operations could own the process end to end.">
+<meta property="og:image" content="images/case-study-idcards-01.webp">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<title>ID Card Tool — Emily Teixeira</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#2C2C2C;
+    --muted:#828282;
+    --line:#CECECE;
+    --accent:#AF61F7;
+    --accent-soft:#FCF8FF;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:920px; margin:0 auto; padding:0 28px; }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+  @media (prefers-reduced-motion: reduce){ *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; } }
+  img{ max-width:100%; display:block; }
+
+  header{
+    padding:32px 0 24px;
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    border-bottom:1px solid var(--line);
+  }
+  header .name{ font-family:'Inter', sans-serif; font-size:18px; font-weight:600; letter-spacing:-0.01em; }
+  nav{ display:flex; gap:28px; font-size:14px; color:var(--muted); }
+  nav a:hover{ color:var(--ink); }
+
+  .back{ padding:28px 0 0; font-size:13px; color:var(--muted); display:inline-block; }
+  .back:hover{ color:var(--accent); }
+
+  .cs-hero{ padding:28px 0 48px; }
+  .eyebrow{ font-size:13px; color:var(--accent); font-weight:500; }
+  .cs-hero h1{
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:clamp(30px, 4.4vw, 44px);
+    line-height:1.18;
+    letter-spacing:-0.02em;
+    margin-top:14px;
+  }
+  .cs-hero p{ margin-top:18px; font-size:16px; color:var(--muted); }
+
+  .meta-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:20px;
+    padding:32px 0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .meta-grid div span{ display:block; font-size:12.5px; color:var(--muted); margin-bottom:6px; }
+  .meta-grid div strong{ font-size:13.5px; font-weight:500; line-height:1.4; display:block; }
+  @media (max-width:720px){ .meta-grid{ grid-template-columns:repeat(2, 1fr); } }
+
+  .note{
+    background:var(--accent-soft);
+    border-radius:4px;
+    padding:20px 24px;
+    margin:32px 0 0;
+    font-size:13.5px;
+    color:var(--ink);
+  }
+
+  .problem{
+    background:var(--ink);
+    color:var(--paper);
+    padding:56px 28px;
+    margin:56px -28px 0;
+  }
+  .problem .wrap-inner{ margin:0 auto; }
+  .problem .eyebrow{ color:#C9A6F0; }
+  .problem h2{
+    font-family:'Inter', sans-serif;
+    font-weight:500;
+    font-size:clamp(22px,3vw,30px);
+    line-height:1.3;
+    margin-top:14px;
+  }
+
+  section.stage{ padding:64px 0; border-bottom:1px solid var(--line); }
+  section.stage:last-of-type{ border-bottom:none; }
+  .stage .eyebrow{ margin-bottom:12px; display:block; }
+  .stage h2{
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:26px;
+    letter-spacing:-0.01em;
+    margin-bottom:16px;
+  }
+  .stage h3{
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:16px;
+    margin-top:32px;
+    margin-bottom:10px;
+  }
+  .stage p{ color:var(--muted); font-size:15.5px; }
+  .stage p + p{ margin-top:12px; }
+
+  .flow-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-top:24px;
+    flex-wrap:wrap;
+    font-size:13px;
+  }
+  .flow-row .step{
+    padding:8px 14px;
+    border:1px solid var(--line);
+    border-radius:100px;
+    color:var(--muted);
+  }
+  .flow-row .arrow{ color:var(--line); }
+
+  .workstreams{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin-top:24px;
+  }
+  @media (max-width:720px){ .workstreams{ grid-template-columns:1fr; } }
+  .workstreams .card{ border:1px solid var(--line); border-radius:2px; padding:18px; }
+  .workstreams .card .n{ font-size:12px; color:var(--accent); font-weight:600; margin-bottom:8px; }
+  .workstreams .card h4{ font-size:14px; font-weight:600; margin-bottom:8px; }
+  .workstreams .card p{ font-size:13px; color:var(--muted); max-width:none; }
+
+  .phase-list{ margin-top:24px; display:flex; flex-direction:column; gap:0; }
+  .phase-list .row{ display:grid; grid-template-columns:90px 1fr; gap:20px; border-top:1px solid var(--line); padding:18px 0; }
+  .phase-list .row .tag{ font-size:12.5px; font-weight:600; color:var(--ink); }
+  .phase-list .row .d{ font-size:14.5px; color:var(--muted); }
+  @media (max-width:640px){ .phase-list .row{ grid-template-columns:1fr; gap:6px; } }
+
+  .stat-row{ display:flex; gap:32px; margin-top:28px; flex-wrap:wrap; }
+  .stat{ min-width:150px; }
+  .stat .num{ font-size:32px; font-weight:600; color:var(--accent); }
+  .stat .label{ font-size:13px; color:var(--muted); margin-top:4px; max-width:220px; }
+
+  .gallery-head{ padding-top:64px; padding-bottom:8px; }
+  .gallery-head .eyebrow{ margin-bottom:12px; display:block; }
+  .gallery-head h2{ font-family:'Inter', sans-serif; font-weight:600; font-size:28px; letter-spacing:-0.01em; }
+  .gallery-head p{ margin-top:14px; color:var(--muted); font-size:15.5px; }
+
+  .gallery-stack{ display:flex; flex-direction:column; gap:40px; padding:40px 0; }
+  /* card as a column so the caption band absorbs the leftover height of a stretched
+     grid row: dividers line up and no dead space is left under a shorter caption */
+  /* showcase treatment: the mockup sits centred inside a padded white card with its own
+     shadow (margin-block:auto does the centring); the caption reserves a fixed number of
+     lines so the divider lines up across a row and no dead space is left under it */
+  .shot{ border:1px solid var(--line); border-radius:4px; overflow:hidden; background:var(--paper); padding:64px; display:flex; flex-direction:column; }
+  .shot img{ width:100%; display:block; margin-block:auto; filter:drop-shadow(0 6px 20px rgba(28,27,25,0.16)); }
+  .shot .cap{ margin:64px -64px -64px; padding:12px 64px; font-size:13px; line-height:20px; color:var(--muted); border-top:1px solid var(--line); background:var(--paper); }
+  /* 64px de aire funciona en la tarjeta ancha de desktop; en pantallas angostas dejaria
+     la captura ilegible, asi que baja junto con el ancho disponible */
+  @media (max-width:720px){
+    .shot{ padding:32px; }
+    .shot .cap{ margin:32px -32px -32px; padding:12px 32px; }
+  }
+  @media (max-width:480px){
+    .shot{ padding:20px; }
+    .shot .cap{ margin:20px -20px -20px; padding:12px 20px; }
+  }
+  /* la reserva del caption solo hace falta donde hay dos o mas tarjetas por fila:
+     es lo que alinea los divisores. Con una sola tarjeta por fila seria aire muerto. */
+  .gallery-pair .shot .cap{ min-height:84px; }                          /* 2 por fila: hasta 3 lineas */
+  @media (max-width:560px){ .gallery-pair .shot .cap{ min-height:0; } }  /* 1 columna: sin reserva */
+  .gallery-pair{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  @media (max-width:560px){ .gallery-pair{ grid-template-columns:1fr; } }
+
+  .reflection{ padding:56px 0 72px; }
+  .reflection .eyebrow{ margin-bottom:12px; display:block; }
+  .reflection h2{ font-family:'Inter', sans-serif; font-weight:600; font-size:24px; margin-bottom:16px; }
+  .reflection p{ color:var(--muted); font-size:15.5px; }
+  .reflection p + p{ margin-top:12px; }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:24px 0 40px;
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    color:var(--muted);
+  }
+  footer a:hover{ color:var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="name">Emily Teixeira</div>
+    <nav>
+      <a href="index.html#work">Work</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <a class="back" href="index.html">← Back to portfolio</a>
+
+  <section class="cs-hero">
+    <span class="eyebrow">Product Design · Collective Health</span>
+    <h1>From vendor-dependent to self-serve: ID cards without the wait.</h1>
+    <p>Every member ID card started as a request routed to a third-party vendor — even for a one-line template change. This project brought template creation, card generation, and approval in-house, so Collective Health's own Card Operations team could own the entire process end to end.</p>
+  </section>
+
+  <div class="meta-grid">
+    <div><span>Role</span><strong>Product / UX Designer</strong></div>
+    <div><span>Team</span><strong>PM, 2 engineers, Card Ops, UX (me)</strong></div>
+    <div><span>Timeline</span><strong>Q1 – Q3 2025</strong></div>
+    <div><span>Tools</span><strong>Figma, FigJam</strong></div>
+  </div>
+
+  <div class="note">
+    A note on these screens: every person ID shown throughout this case study is placeholder test data by design — the internal tool never uses real member information outside of production approval, which isn't shown here.
+  </div>
+
+  <div class="problem">
+    <div class="wrap-inner">
+      <span class="eyebrow">The problem</span>
+      <h2>How might Collective Health bring ID card creation and approval in-house, so a template change no longer means opening a ticket with a vendor?</h2>
+    </div>
+  </div>
+
+  <section class="stage">
+    <span class="eyebrow">Discovery</span>
+    <h2>Mapping a process that lived almost entirely outside the company</h2>
+    <p>The starting brief sounded simple: build a tool for ID cards. In practice, almost none of the process was visible to us yet. Card templates were designed and hosted on the vendor's side, mock cards were reviewed over email, and production files were handed off through the vendor's own platform. Discovery started with walking through that entire vendor-side workflow end to end with the Card Operations team, before designing a single screen.</p>
+
+    <h3>The current state</h3>
+    <div class="flow-row">
+      <span class="step">Build template (vendor)</span><span class="arrow">→</span>
+      <span class="step">Generate mock (test data)</span><span class="arrow">→</span>
+      <span class="step">Email approval (client + network)</span><span class="arrow">→</span>
+      <span class="step">Production feed (vendor)</span><span class="arrow">→</span>
+      <span class="step">Print + mail (vendor)</span>
+    </div>
+
+    <h3>Untangling "template" from "data"</h3>
+    <p>The most important discovery exercise wasn't a screen at all — it was a shared spreadsheet mapping every visual element on a card to whether it was static per network (the background, the disclaimer text, the layout) or dynamic per member (name, ID, plan details). That mapping became the data model the entire in-house system was eventually built on.</p>
+
+    <h3>Four words that meant something different to everyone</h3>
+    <p>Early sessions kept stalling on the words "preview," "mock," "test," and "production" — each person on the team meant something slightly different by them. Defining clear boundaries between building a template, testing it with fake data, and approving it with real data was what let the team agree that mock and production approvals could share the same interface, just pointed at different environments — a decision that shaped the entire approval flow.</p>
+
+    <h3>Scoping three workstreams</h3>
+    <div class="workstreams">
+      <div class="card">
+        <div class="n">01</div>
+        <h4>Feed generation &amp; management</h4>
+        <p>Mostly backend — but it needed a visible home for Ops to track every batch and its status.</p>
+      </div>
+      <div class="card">
+        <div class="n">02</div>
+        <h4>Template management</h4>
+        <p>The biggest UX lift: letting Ops create, assign, and maintain templates without opening a ticket with engineering.</p>
+      </div>
+      <div class="card">
+        <div class="n">03</div>
+        <h4>Approval &amp; QA workflow</h4>
+        <p>Replacing an email-based, vendor-routed approval chain with something the team could run themselves.</p>
+      </div>
+    </div>
+
+    <h3>A constraint that shaped the whole design</h3>
+    <p>One recurring blocker kept resurfacing in discovery: Ops designed card backgrounds visually in Illustrator or Figma, but the templating system needed everything in HTML — and neither tool converted cleanly. That translation gap meant the first release had to work within a defined set of configurable fields rather than fully open-ended visual design, a real technical constraint that discovery surfaced early enough to design around instead of hitting in production.</p>
+  </section>
+
+  <section class="stage">
+    <span class="eyebrow">Delivery</span>
+    <h2>Three phases, designed ahead of a moving engineering timeline</h2>
+    <p>Engineering priorities shifted more than once as more urgent card issues came up, so design work ran in three overlapping phases — each one reviewed as low-fidelity wireframes in recurring sessions with Product, Engineering, and Ops before moving to high fidelity.</p>
+    <div class="phase-list">
+      <div class="row"><span class="tag">MVI‑1</span><span class="d">Assigning templates to individual network states — the first piece Ops needed to stop depending on the vendor for routine changes.</span></div>
+      <div class="row"><span class="tag">MVI‑2</span><span class="d">Full template management, built around a structured, human-readable schema so new templates could be created and duplicated without engineering involvement.</span></div>
+      <div class="row"><span class="tag">MVI‑3</span><span class="d">The approval workflow — reviewing generated card batches, spotting errors, and approving or suppressing individual cards before a feed goes to production.</span></div>
+    </div>
+  </section>
+
+  <section class="stage" style="border-bottom:none;">
+    <span class="eyebrow">Impact</span>
+    <h2>What changed once it shipped</h2>
+    <p>With template creation and card generation handled internally, the vendor's role shrank to what actually required a print shop: physical mailing. Everything upstream of that — design, data mapping, generation, and approval — now runs inside tools the team owns.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="num">−20%</div><div class="label">reduction in cost from removing vendor dependency for template creation</div></div>
+      <div class="stat"><div class="num">Faster</div><div class="label">turnaround on template changes and card batches, with no vendor ticket in the loop</div></div>
+    </div>
+  </section>
+
+  <div class="gallery-head">
+    <span class="eyebrow">Final product</span>
+    <h2>The tool, end to end</h2>
+    <p>From assigning a template to a network, to generating and approving a batch, to the card a member actually receives.</p>
+  </div>
+
+  <div class="gallery-stack">
+    <div class="shot">
+      <img loading="lazy" decoding="async" src="images/case-study-idcards-01.webp" alt="Data Sync tab showing network states and their assigned templates">
+      <div class="cap">Data Sync — every network state and its assigned template, in one list Ops can manage directly</div>
+    </div>
+    <div class="shot">
+      <img loading="lazy" decoding="async" src="images/case-study-idcards-02.webp" alt="Modal for assigning a template to a selected network state">
+      <div class="cap">Assigning a template to a network state — the exact mapping problem discovery was built around</div>
+    </div>
+    <div class="shot">
+      <img loading="lazy" decoding="async" src="images/case-study-idcards-03.webp" alt="Feed files list showing card counts and feed status">
+      <div class="cap">Feed Management — every card generation batch and its status, replacing a process that used to live entirely with the vendor</div>
+    </div>
+    <div class="shot">
+      <img loading="lazy" decoding="async" src="images/case-study-idcards-04.webp" alt="Confirmation modal before approving a feed of person IDs">
+      <div class="cap">Approving a feed is a deliberate, confirmed action — it processes every person ID in the batch at once</div>
+    </div>
+    <div class="shot">
+      <img loading="lazy" decoding="async" src="images/case-study-idcards-05.webp" alt="Feed detail screen showing card counts, error report, and approve or reject actions">
+      <div class="cap">Feed detail — card counts, an error report, and suppress/approve actions for individual person IDs, all in one view</div>
+    </div>
+    <div class="gallery-pair">
+      <div class="shot">
+        <img loading="lazy" decoding="async" src="images/case-study-idcards-06.webp" alt="Front of a generated member ID card">
+        <div class="cap">The card, front —</div>
+      </div>
+      <div class="shot">
+        <img loading="lazy" decoding="async" src="images/case-study-idcards-07.webp" alt="Back of a generated member ID card">
+        <div class="cap">— and back. Everything above exists to produce this correctly, every time</div>
+      </div>
+    </div>
+  </div>
+
+  <section class="reflection">
+    <span class="eyebrow">Reflection</span>
+    <h2>What this project taught me</h2>
+    <p>Most of the real design work happened before any screen existed — in a spreadsheet mapping template versus data, and in meetings where we finally agreed on what "mock" meant. Discovery here wasn't a phase I moved through quickly to get to designing; it was the project.</p>
+    <p>I also learned to design around a moving delivery timeline instead of against it. Splitting the work into phases that could each ship independently meant progress didn't stall every time engineering priorities shifted — the team always had a clear, de-scoped next step ready to go.</p>
+  </section>
+
+  <footer>
+    <a href="index.html">← Back to portfolio</a>
+    <span>© 2026</span>
+  </footer>
+
+</div>
+
+</body>
+</html>

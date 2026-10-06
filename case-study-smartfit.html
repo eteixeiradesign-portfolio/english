@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="End-to-end redesign of SmartFit, a gym membership app used across Chile — removing the friction that kept members from building a training habit.">
+<meta name="author" content="Emily Teixeira">
+<meta property="og:title" content="SmartFit Redesign — Emily Teixeira">
+<meta property="og:description" content="End-to-end redesign of SmartFit, a gym membership app used across Chile — removing the friction that kept members from building a training habit.">
+<meta property="og:image" content="images/case-study-smartfit-01.webp">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<title>SmartFit Redesign — Emily Teixeira</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#2C2C2C;
+    --muted:#828282;
+    --line:#CECECE;
+    --accent:#AF61F7;
+    --accent-soft:#FCF8FF;
+    --sf-black:#000000;
+    --sf-yellow:#FCB823;
+    --sf-gray:#5A5A5A;
+    --sf-lightgray:#C8D0D1;
+    --sf-teal:#00597E;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:920px; margin:0 auto; padding:0 28px; }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+  @media (prefers-reduced-motion: reduce){ *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; } }
+  img{ max-width:100%; display:block; }
+
+  header{
+    padding:32px 0 24px;
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    border-bottom:1px solid var(--line);
+  }
+  header .name{ font-family:'Inter', sans-serif; font-size:18px; font-weight:600; letter-spacing:-0.01em; }
+  nav{ display:flex; gap:28px; font-size:14px; color:var(--muted); }
+  nav a:hover{ color:var(--ink); }
+
+  .back{
+    padding:28px 0 0;
+    font-size:13px;
+    color:var(--muted);
+  }
+  .back:hover{ color:var(--accent); }
+
+  .cs-hero{ padding:28px 0 48px; }
+  .eyebrow{ font-size:13px; color:var(--accent); font-weight:500; }
+  .cs-hero h1{
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:clamp(30px, 4.4vw, 44px);
+    line-height:1.18;
+    letter-spacing:-0.02em;
+    margin-top:14px;
+  }
+  .cs-hero p{ margin-top:18px; font-size:16px; color:var(--muted); }
+
+  .meta-grid{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    gap:20px;
+    padding:32px 0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .meta-grid div span{ display:block; font-size:12.5px; color:var(--muted); margin-bottom:6px; }
+  .meta-grid div strong{ font-size:14px; font-weight:500; }
+  @media (max-width:720px){ .meta-grid{ grid-template-columns:repeat(2, 1fr); } }
+
+  .problem{
+    background:var(--ink);
+    color:var(--paper);
+    padding:56px 28px;
+    margin:0 -28px;
+    text-align:left;
+  }
+  .problem .wrap-inner{ margin:0 auto; }
+  .problem .eyebrow{ color:var(--sf-yellow); }
+  .problem h2{
+    font-family:'Inter', sans-serif;
+    font-weight:500;
+    font-size:clamp(22px,3vw,30px);
+    line-height:1.3;
+    margin-top:14px;
+  }
+
+  section.stage{ padding:64px 0; border-bottom:1px solid var(--line); }
+  section.stage:last-of-type{ border-bottom:none; }
+  .stage .eyebrow{ margin-bottom:12px; display:block; }
+  .stage h2{
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:26px;
+    letter-spacing:-0.01em;
+    margin-bottom:16px;
+  }
+  .stage p{ color:var(--muted); font-size:15.5px; }
+  .stage p + p{ margin-top:12px; }
+
+  .stat-row{ display:flex; gap:32px; margin-top:28px; flex-wrap:wrap; }
+  .stat{ min-width:150px; }
+  .stat .num{ font-size:32px; font-weight:600; color:var(--accent); }
+  .stat .label{ font-size:13px; color:var(--muted); margin-top:4px; max-width:180px; }
+
+  .insight-list{ margin-top:24px; display:flex; flex-direction:column; gap:14px; }
+  .insight-list .row{ display:flex; gap:16px; align-items:baseline; border-top:1px solid var(--line); padding-top:14px; }
+  .insight-list .row .k{ font-size:13px; color:var(--ink); font-weight:500; min-width:150px; flex-shrink:0; }
+  .insight-list .row .v{ font-size:14.5px; color:var(--muted); }
+
+  .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-top:28px; }
+  @media (max-width:640px){ .two-col{ grid-template-columns:1fr; } }
+  .two-col .card{ border:1px solid var(--line); border-radius:2px; padding:20px; }
+  .two-col .card h4{ font-size:13px; text-transform:none; color:var(--ink); font-weight:600; margin-bottom:10px; }
+  .two-col .card ul{ list-style:none; display:flex; flex-direction:column; gap:8px; }
+  /* flex + gap sets the space between the dash and the label explicitly; the old padding-left
+     happened to equal the em dash's own width, which left them touching */
+  .two-col .card li{ font-size:14px; color:var(--muted); display:flex; gap:10px; }
+  .two-col .card li::before{ content:'—'; color:var(--line); flex-shrink:0; }
+
+  .ia-tree{ margin-top:28px; display:flex; flex-direction:column; gap:10px; }
+  .ia-tree .branch{ display:flex; gap:14px; flex-wrap:wrap; }
+  .ia-tree .node{
+    font-size:13px;
+    padding:8px 14px;
+    background:var(--accent-soft);
+    color:var(--ink);
+    border-radius:2px;
+    font-weight:500;
+  }
+  .ia-tree .sub{ font-size:13px; color:var(--muted); padding:8px 0 8px 4px; }
+
+  .pillars{ display:flex; gap:12px; margin-top:24px; flex-wrap:wrap; }
+  .pillar{
+    border:1px solid var(--line);
+    padding:8px 16px;
+    border-radius:100px;
+    font-size:13px;
+    color:var(--ink);
+  }
+
+  .palette-row{ display:flex; gap:16px; margin-top:28px; flex-wrap:wrap; }
+  .swatch{ width:88px; }
+  .swatch .chip{ width:88px; height:56px; border-radius:2px; border:1px solid var(--line); }
+  .swatch .label{ font-size:12px; color:var(--muted); margin-top:8px; }
+  .swatch .hex{ font-size:12px; color:var(--ink); font-weight:500; }
+
+  .type-scale{ margin-top:24px; display:flex; flex-direction:column; gap:10px; }
+  .type-scale .t{ display:flex; align-items:baseline; gap:16px; border-top:1px solid var(--line); padding-top:10px; }
+  .type-scale .t .sample{ font-weight:700; }
+  .type-scale .t .info{ font-size:12.5px; color:var(--muted); }
+
+  .gallery-head{ padding-top:64px; padding-bottom:8px; }
+  .gallery-head .eyebrow{ margin-bottom:12px; display:block; }
+  .gallery-head h2{ font-family:'Inter', sans-serif; font-weight:600; font-size:28px; letter-spacing:-0.01em; }
+  .gallery-head p{ margin-top:14px; color:var(--muted); font-size:15.5px; }
+
+  .gallery{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:stretch;
+    justify-content:center;
+    gap:24px;
+    padding:40px 0 72px;
+  }
+  .shot{ flex:0 1 calc(33.333% - 16px); }
+  @media (max-width:760px){ .shot{ flex-basis:calc(50% - 12px); } }
+  @media (max-width:520px){ .shot{ flex-basis:100%; } }
+  .shot{ border:1px solid var(--line); border-radius:4px; overflow:hidden; background:var(--paper); padding:28px; display:flex; flex-direction:column; }
+  /* the exports are shadow-free with transparent rounded corners, so drop-shadow follows the
+     screen silhouette; the padding is what centres the mockup and keeps the shadow unclipped.
+     margin-block:auto keeps it centred when the card is stretched to match its row. */
+  /* fixed ratio so the rendered height does not depend on the 586px vs 587px difference
+     between the exports; contain avoids distorting the odd ones out */
+  .shot img{ width:100%; display:block; margin-block:auto; aspect-ratio:586/1042; object-fit:contain;
+             filter:drop-shadow(0 6px 20px rgba(28,27,25,0.16)); }
+  /* reserve three lines so a 2-line and a 3-line caption yield the same card height */
+  .shot .cap{ margin:28px -28px -28px; padding:12px 28px; font-size:13px; line-height:20px; min-height:85px; color:var(--muted); border-top:1px solid var(--line); background:var(--paper); }
+  /* la reserva del caption solo hace falta donde hay dos o mas tarjetas por fila:
+     es lo que alinea los divisores. Con una sola tarjeta por fila seria aire muerto. */
+  @media (max-width:520px){ .shot .cap{ min-height:0; } }      /* 1 columna: sin reserva */
+  .shot.wide{ grid-column:span 2; }
+  @media (max-width:520px){ .shot.wide{ grid-column:span 1; } }
+
+  .reflection{ padding:56px 0 72px; }
+  .reflection .eyebrow{ margin-bottom:12px; display:block; }
+  .reflection h2{ font-family:'Inter', sans-serif; font-weight:600; font-size:24px; margin-bottom:16px; }
+  .reflection p{ color:var(--muted); font-size:15.5px; }
+  .reflection p + p{ margin-top:12px; }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:24px 0 40px;
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    color:var(--muted);
+  }
+  footer a:hover{ color:var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="name">Emily Teixeira</div>
+    <nav>
+      <a href="index.html#work">Work</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <a class="back" href="index.html">← Back to portfolio</a>
+
+  <section class="cs-hero">
+    <span class="eyebrow">Redesign · SmartFit</span>
+    <h1>Smart, effortless training: less friction, more results.</h1>
+    <p>SmartFit is a gym membership app used across Chile. We redesigned the experience end to end — from logging a workout to tracking a personal goal — to remove the friction that was keeping members from building a training habit.</p>
+  </section>
+
+  <div class="meta-grid">
+    <div><span>Role</span><strong>Product Designer</strong></div>
+    <div><span>Team</span><strong>Solo, with Product & Eng</strong></div>
+    <div><span>Timeline</span><strong>Q2 2021 – Q1 2022</strong></div>
+    <div><span>Tools</span><strong>Figma, FigJam, Miro</strong></div>
+    <div><span>Client</span><strong>SmartFit</strong></div>
+  </div>
+
+  <div class="problem">
+    <div class="wrap-inner">
+      <span class="eyebrow">The problem</span>
+      <h2>How might we reduce friction in the SmartFit experience so members connect more easily with their training and wellbeing?</h2>
+    </div>
+  </div>
+
+  <section class="stage">
+    <span class="eyebrow">Discovery</span>
+    <h2>Understanding the problem</h2>
+    <p>SmartFit's brief started as a simple UI refresh. Once we looked at the existing feedback and ran new interviews, it became clear the real issues were structural — not cosmetic. We interviewed 5 members across Chile in 30-minute sessions to understand where the app was getting in the way.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="num">80%</div><div class="label">found it hard to log a workout on their own</div></div>
+      <div class="stat"><div class="num">20%</div><div class="label">used SmartFit GO to train inside the gym</div></div>
+      <div class="stat"><div class="num">45%</div><div class="label">found the live occupancy chart genuinely useful</div></div>
+    </div>
+    <div class="insight-list">
+      <div class="row"><span class="k">Sign-up</span><span class="v">Easy overall, but the RUT (national ID) format wasn't explained, which caused failed logins.</span></div>
+      <div class="row"><span class="k">Finding a workout</span><span class="v">Cardio challenges were motivating, but there was no way to find or log an at-home session.</span></div>
+      <div class="row"><span class="k">Logging a session</span><span class="v">Only trainers could register a workout — members had no way to track their own progress.</span></div>
+      <div class="row"><span class="k">Reviewing a routine</span><span class="v">Members could see trainer-assigned exercises, but couldn't edit or adapt them.</span></div>
+    </div>
+  </section>
+
+  <section class="stage">
+    <span class="eyebrow">Define</span>
+    <h2>User needs vs. business reality</h2>
+    <p>We wanted to fix everything at once. Instead, we mapped every idea against user value and implementation effort, which gave us an honest MVP to align on with the client before design started.</p>
+    <div class="two-col">
+      <div class="card">
+        <h4>Prioritized for v1</h4>
+        <ul>
+          <li>Search & filter exercises</li>
+          <li>Create and manage a workout</li>
+          <li>In-app help chat</li>
+          <li>Exercise reference library</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Parked for later</h4>
+        <ul>
+          <li>Personalized recommendation engine</li>
+          <li>Editable personal/body data</li>
+          <li>Fingerprint login</li>
+          <li>In-app community features</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:28px;">A follow-up card sorting session with returning and new users confirmed the structure below, which became the new information architecture.</p>
+    <div class="ia-tree">
+      <div class="branch">
+        <span class="node">Home</span>
+      </div>
+      <div class="sub">→ Dashboard, occupancy, my workouts</div>
+      <div class="branch">
+        <span class="node">Search</span>
+      </div>
+      <div class="sub">→ Filters, recent & favorite exercises</div>
+      <div class="branch">
+        <span class="node">SmartFit GO</span>
+      </div>
+      <div class="sub">→ On-demand video library, favorites</div>
+      <div class="branch">
+        <span class="node">Profile</span>
+      </div>
+      <div class="sub">→ Personal goal, favorites, payments, help</div>
+    </div>
+  </section>
+
+  <section class="stage">
+    <span class="eyebrow">Ideate</span>
+    <h2>From hypothesis to screens</h2>
+    <p>With the research validated, we mapped user flows and task flows for the core journey — starting a new workout — then moved straight into low-fidelity wireframes: sign in, new workout, workout type, recommended routines, session details, and confirmation.</p>
+    <p>In parallel, content design got equal weight to layout. We used the Golden Circle to define why the product exists before writing a single button label: SmartFit's why is becoming a genuinely smart training partner — not just a booking app. That shaped a voice built on four pillars.</p>
+    <div class="pillars">
+      <span class="pillar">Reliable</span>
+      <span class="pillar">Motivating</span>
+      <span class="pillar">Efficient</span>
+      <span class="pillar">Quality</span>
+    </div>
+    <p style="margin-top:20px;">Those pillars fed a voice & tone matrix that standardized dates, button labels, and error and success messages — small, easy-to-miss details that add up to how trustworthy the app feels.</p>
+  </section>
+
+  <section class="stage">
+    <span class="eyebrow">UI System</span>
+    <h2>A consistent visual language</h2>
+    <p>The final UI kit consolidated color, type, and components into a documented, auto-layout system the engineering team could implement directly.</p>
+    <div class="palette-row">
+      <div class="swatch"><div class="chip" style="background:var(--sf-black)"></div><div class="label">Primary</div><div class="hex">#000000</div></div>
+      <div class="swatch"><div class="chip" style="background:var(--sf-yellow)"></div><div class="label">Secondary</div><div class="hex">#FCB823</div></div>
+      <div class="swatch"><div class="chip" style="background:var(--sf-gray)"></div><div class="label">Variant</div><div class="hex">#5A5A5A</div></div>
+      <div class="swatch"><div class="chip" style="background:var(--sf-lightgray)"></div><div class="label">Variant 2</div><div class="hex">#C8D0D1</div></div>
+      <div class="swatch"><div class="chip" style="background:var(--sf-teal)"></div><div class="label">Accent</div><div class="hex">#00597E</div></div>
+    </div>
+    <div class="type-scale">
+      <div class="t"><span class="sample" style="font-size:22px;">H1</span><span class="info">Gotham Black · 22pt</span></div>
+      <div class="t"><span class="sample" style="font-size:18px; font-weight:600;">Title 1</span><span class="info">Gotham Bold · 18pt</span></div>
+      <div class="t"><span class="sample" style="font-size:16px; font-weight:500;">Subtitle</span><span class="info">Gotham Medium · 16pt</span></div>
+      <div class="t"><span class="sample" style="font-size:14px; font-weight:400;">Body text</span><span class="info">Gotham Book · 14pt</span></div>
+    </div>
+  </section>
+
+  <div class="gallery-head">
+    <span class="eyebrow">Final product</span>
+    <h2>SmartFit, reimagined</h2>
+    <p>The redesign removed the biggest sources of friction: logging a workout, tracking a personal goal, and finding a session to follow — whether inside the gym or training from home with SmartFit GO.</p>
+  </div>
+
+  <div class="gallery">
+    <div class="shot">
+      <img loading="lazy" decoding="async" src="images/case-study-smartfit-01.webp" alt="Screen for selecting exercises for a new workout, with recent and favorite filters">
+      <div class="cap">Building a workout — search, filter, and multi-select exercises</div>
+    </div>
+    <div class="shot">
+      <img loading="lazy" decoding="async" src="images/case-study-smartfit-02.webp" alt="Exercise detail modal with instructional diagrams and a request-assistance link">
+      <div class="cap">Exercise detail with form guidance and a one-tap request for trainer help</div>
+    </div>
+    <div class="shot">
+      <img loading="lazy" decoding="async" src="images/case-study-smartfit-03.webp" alt="My Workouts screen listing sessions grouped by day and gym location">
+      <div class="cap">My Workouts — sessions grouped by day, duration, and location</div>
+    </div>
+    <div class="shot">
+      <img loading="lazy" decoding="async" src="images/case-study-smartfit-04.webp" alt="Personal Goal screen showing body data and target weight and BMI">
+      <div class="cap">Personal Goal — body data, targets, and training frequency in one view</div>
+    </div>
+    <div class="shot">
+      <img loading="lazy" decoding="async" src="images/case-study-smartfit-05.webp" alt="SmartFit GO screen with an on-demand video library">
+      <div class="cap">SmartFit GO — on-demand video library for training outside the gym</div>
+    </div>
+  </div>
+
+  <section class="reflection">
+    <span class="eyebrow">Reflection</span>
+    <h2>What this project taught me</h2>
+    <p>This redesign pushed me to look past the interface and into the systems behind it — how a login field, a search prompt, and an error message all carry the same product voice when they're designed with intent, not by default.</p>
+    <p>The biggest lesson was that the client's first framing of a problem isn't always the real one. Following the research instead of the brief led to a scope that actually solved the friction members were experiencing — which is a trade-off I'd make again.</p>
+  </section>
+
+  <footer>
+    <a href="index.html">← Back to portfolio</a>
+    <span>© 2026</span>
+  </footer>
+
+</div>
+
+</body>
+</html>

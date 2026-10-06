@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Fitting every deductible tier into one thumb-swipe: letting members on multi-tier health plans check deductible and out-of-pocket numbers for any tier or dependent from the home screen.">
+<meta name="author" content="Emily Teixeira">
+<meta property="og:title" content="Multi-Tier Accumulators — Emily Teixeira">
+<meta property="og:description" content="Fitting every deductible tier into one thumb-swipe: letting members on multi-tier health plans check deductible and out-of-pocket numbers for any tier or dependent from the home screen.">
+<meta property="og:image" content="images/case-study-accumulators-01.webp">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<title>Multi-Tier Accumulators — Emily Teixeira</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#2C2C2C;
+    --muted:#828282;
+    --line:#CECECE;
+    --accent:#AF61F7;
+    --accent-soft:#FCF8FF;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:920px; margin:0 auto; padding:0 28px; }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+  @media (prefers-reduced-motion: reduce){ *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; } }
+  img{ max-width:100%; display:block; }
+
+  header{
+    padding:32px 0 24px;
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    border-bottom:1px solid var(--line);
+  }
+  header .name{ font-family:'Inter', sans-serif; font-size:18px; font-weight:600; letter-spacing:-0.01em; }
+  nav{ display:flex; gap:28px; font-size:14px; color:var(--muted); }
+  nav a:hover{ color:var(--ink); }
+
+  .back{ padding:28px 0 0; font-size:13px; color:var(--muted); display:inline-block; }
+  .back:hover{ color:var(--accent); }
+
+  .cs-hero{ padding:28px 0 48px; }
+  .eyebrow{ font-size:13px; color:var(--accent); font-weight:500; }
+  .cs-hero h1{
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:clamp(30px, 4.4vw, 44px);
+    line-height:1.18;
+    letter-spacing:-0.02em;
+    margin-top:14px;
+  }
+  .cs-hero p{ margin-top:18px; font-size:16px; color:var(--muted); }
+
+  .meta-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:20px;
+    padding:32px 0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .meta-grid div span{ display:block; font-size:12.5px; color:var(--muted); margin-bottom:6px; }
+  .meta-grid div strong{ font-size:13.5px; font-weight:500; line-height:1.4; display:block; }
+  @media (max-width:720px){ .meta-grid{ grid-template-columns:repeat(2, 1fr); } }
+
+  .note{
+    background:var(--accent-soft);
+    border-radius:4px;
+    padding:20px 24px;
+    margin:32px 0 0;
+    font-size:13.5px;
+    color:var(--ink);
+  }
+
+  .problem{
+    background:var(--ink);
+    color:var(--paper);
+    padding:56px 28px;
+    margin:56px -28px 0;
+  }
+  .problem .wrap-inner{ margin:0 auto; }
+  .problem .eyebrow{ color:#C9A6F0; }
+  .problem h2{
+    font-family:'Inter', sans-serif;
+    font-weight:500;
+    font-size:clamp(22px,3vw,30px);
+    line-height:1.3;
+    margin-top:14px;
+  }
+
+  section.stage{ padding:64px 0; border-bottom:1px solid var(--line); }
+  section.stage:last-of-type{ border-bottom:none; }
+  .stage .eyebrow{ margin-bottom:12px; display:block; }
+  .stage h2{
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:26px;
+    letter-spacing:-0.01em;
+    margin-bottom:16px;
+  }
+  .stage h3{
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:15px;
+    margin-top:28px;
+    margin-bottom:8px;
+  }
+  .stage p{ color:var(--muted); font-size:15.5px; }
+  .stage p + p{ margin-top:12px; }
+
+  .constraint-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin-top:24px;
+  }
+  @media (max-width:720px){ .constraint-grid{ grid-template-columns:1fr; } }
+  .constraint-grid .card{ border:1px solid var(--line); border-radius:2px; padding:16px; }
+  .constraint-grid .card .n{ font-size:24px; font-weight:600; color:var(--accent); }
+  .constraint-grid .card .l{ font-size:13px; color:var(--muted); margin-top:6px; }
+
+  .solution-list{ margin-top:24px; display:flex; flex-direction:column; gap:0; }
+  .solution-list .row{ display:grid; grid-template-columns:32px 1fr; gap:16px; border-top:1px solid var(--line); padding:18px 0; }
+  .solution-list .row .num{ font-size:13px; color:var(--accent); font-weight:600; }
+  .solution-list .row .t{ font-size:14px; font-weight:500; color:var(--ink); margin-bottom:4px; }
+  .solution-list .row .d{ font-size:14px; color:var(--muted); }
+
+  .gallery-head{ padding-top:64px; padding-bottom:8px; }
+  .gallery-head .eyebrow{ margin-bottom:12px; display:block; }
+  .gallery-head h2{ font-family:'Inter', sans-serif; font-weight:600; font-size:28px; letter-spacing:-0.01em; }
+  .gallery-head p{ margin-top:14px; color:var(--muted); font-size:15.5px; }
+
+  .gallery{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:20px;
+    padding:40px 0 72px;
+  }
+  @media (max-width:900px){ .gallery{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:480px){ .gallery{ grid-template-columns:1fr; } }
+  /* card as a column so the caption band absorbs the leftover height of a stretched
+     grid row: dividers line up and no dead space is left under a shorter caption */
+  /* showcase treatment: the mockup sits centred inside a padded white card with its own
+     shadow (margin-block:auto does the centring); the caption reserves a fixed number of
+     lines so the divider lines up across a row and no dead space is left under it */
+  .shot{ border:1px solid var(--line); border-radius:4px; overflow:hidden; background:var(--paper); padding:32px; display:flex; flex-direction:column; }
+  .shot img{ width:100%; display:block; margin-block:auto; filter:drop-shadow(0 6px 20px rgba(28,27,25,0.16)); }
+  .shot .cap{ margin:32px -32px -32px; padding:10px 32px; font-size:12.5px; line-height:19px; min-height:134px; color:var(--muted); border-top:1px solid var(--line); background:var(--paper); }
+  /* la reserva del caption solo hace falta donde hay dos o mas tarjetas por fila:
+     es lo que alinea los divisores. Con una sola tarjeta por fila seria aire muerto. */
+  @media (max-width:900px){ .shot .cap{ min-height:115px; } }  /* 2 columnas: hasta 5 lineas */
+  @media (max-width:480px){ .shot .cap{ min-height:0; } }      /* 1 columna: sin reserva */
+  .shot.wide{ grid-column:span 2; }
+  @media (max-width:480px){ .shot.wide{ grid-column:span 1; } }
+
+  .reflection{ padding:56px 0 72px; }
+  .reflection .eyebrow{ margin-bottom:12px; display:block; }
+  .reflection h2{ font-family:'Inter', sans-serif; font-weight:600; font-size:24px; margin-bottom:16px; }
+  .reflection p{ color:var(--muted); font-size:15.5px; }
+  .reflection p + p{ margin-top:12px; }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:24px 0 40px;
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    color:var(--muted);
+  }
+  footer a:hover{ color:var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="name">Emily Teixeira</div>
+    <nav>
+      <a href="index.html#work">Work</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <a class="back" href="index.html">← Back to portfolio</a>
+
+  <section class="cs-hero">
+    <span class="eyebrow">Product Design · Collective Health</span>
+    <h1>Fitting every deductible tier into one thumb-swipe.</h1>
+    <p>Members on multi-tier health plans have separate deductible and out-of-pocket buckets for each tier of their plan — sometimes four of them. The home screen could only ever show one. This feature let members swipe through every tier, toggle between deductible and out-of-pocket max, and check any dependent's numbers, all without leaving the home screen.</p>
+  </section>
+
+  <div class="meta-grid">
+    <div><span>Role</span><strong>Product / UX Designer</strong></div>
+    <div><span>Platform</span><strong>iOS &amp; Android (My Collective app)</strong></div>
+    <div><span>Timeline</span><strong>2024</strong></div>
+    <div><span>Client</span><strong>Collective Health</strong></div>
+  </div>
+
+  <div class="note">
+    A note on these screens: the plan name, member name, and dependents shown throughout ("Acme 2019," "Quinn," "Anna," "John," "Carly") are placeholder demo data, not real member information.
+  </div>
+
+  <div class="problem">
+    <div class="wrap-inner">
+      <span class="eyebrow">The problem</span>
+      <h2>How might we show every accumulator tier a multi-tier plan has, for the member and their dependents, without turning the home screen into a spreadsheet?</h2>
+    </div>
+  </div>
+
+  <section class="stage">
+    <span class="eyebrow">Constraint</span>
+    <h2>A lot of numbers, not a lot of screen</h2>
+    <p>A multi-tier plan applies its deductible and out-of-pocket max in stages — Level 1, Level 2, Level 3, and out-of-network each have their own bucket. Each bucket has two dimensions (the member and their family) and two metrics (deductible and out-of-pocket max). Multiply that out and a single member could have well over a dozen individual numbers that all needed a home on a card designed for a phone screen.</p>
+    <div class="constraint-grid">
+      <div class="card"><div class="n">4</div><div class="l">accumulator tiers (Level 1–3 + out-of-network)</div></div>
+      <div class="card"><div class="n">2×2</div><div class="l">dimensions per tier — member/family × deductible/OOP max</div></div>
+      <div class="card"><div class="n">1</div><div class="l">home screen card to hold all of it</div></div>
+    </div>
+  </section>
+
+  <section class="stage">
+    <span class="eyebrow">Solution</span>
+    <h2>Swipe instead of stack</h2>
+    <p>Rather than stacking every tier vertically or burying them behind extra taps, the card became a horizontal carousel — one tier per swipe, with dot pagination showing where you are and how many are left.</p>
+    <div class="solution-list">
+      <div class="row">
+        <div class="num">01</div>
+        <div><div class="t">Swipeable tier carousel</div><div class="d">Level 1, Level 2, Level 3, and out-of-network each get their own card. Swiping left or right moves between them; dots below show position, same pattern members already knew from other parts of the app.</div></div>
+      </div>
+      <div class="row">
+        <div class="num">02</div>
+        <div><div class="t">Deductible / out-of-pocket max toggle</div><div class="d">A segmented control inside the card switches metrics without switching tiers — this alone cut the number of cards needed in half.</div></div>
+      </div>
+      <div class="row">
+        <div class="num">03</div>
+        <div><div class="t">One number that matters, stacked by person</div><div class="d">"$X remaining" stays the loudest number on the card, with a progress bar for "Me" and "Family" stacked so both read at a glance without extra taps.</div></div>
+      </div>
+      <div class="row">
+        <div class="num">04</div>
+        <div><div class="t">Tap-through to full detail</div><div class="d">The card links straight into a "Medical spending" page with every remaining number — including per-service benefit limits — that didn't earn a spot on the home screen.</div></div>
+      </div>
+      <div class="row">
+        <div class="num">05</div>
+        <div><div class="t">One switcher, reused everywhere</div><div class="d">The same "Me ▾" member switcher works on the card and on the detail page, so checking a dependent's accumulators is one tap, not a separate flow.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="gallery-head">
+    <span class="eyebrow">Final product</span>
+    <h2>Swiping through a plan's tiers</h2>
+    <p>The same card, at four different tiers, plus the full detail page and the member switcher underneath it.</p>
+  </div>
+
+  <div class="gallery">
+    <div class="shot">
+      <img loading="lazy" decoding="async" src="images/case-study-accumulators-01.webp" alt="Home screen showing Accumulator level 1 with deductible view selected">
+      <div class="cap">Level 1 — deductible view</div>
+    </div>
+    <div class="shot">
+      <img loading="lazy" decoding="async" src="images/case-study-accumulators-02.webp" alt="Home screen showing Accumulator level 2 with out-of-pocket max view selected">
+      <div class="cap">Level 2 — toggled to out-of-pocket max</div>
+    </div>
+    <div class="shot">
+      <img loading="lazy" decoding="async" src="images/case-study-accumulators-03.webp" alt="Home screen showing Accumulator level 3">
+      <div class="cap">Level 3 — third dot in the carousel</div>
+    </div>
+    <div class="shot">
+      <img loading="lazy" decoding="async" src="images/case-study-accumulators-04.webp" alt="Home screen showing out-of-network accumulator">
+      <div class="cap">Out-of-network — the fourth and final tier</div>
+    </div>
+    <div class="shot">
+      <img loading="lazy" decoding="async" src="images/case-study-accumulators-05.webp" alt="Medical spending detail page showing deductible and out-of-pocket max sections">
+      <div class="cap">Tapping the card opens the full breakdown — deductible and out-of-pocket max, plus benefit limits below</div>
+    </div>
+    <div class="shot">
+      <img loading="lazy" decoding="async" src="images/case-study-accumulators-06.webp" alt="Member switcher modal showing Me, Anna, John and Carly">
+      <div class="cap">Same switcher, member card or detail page — one tap to see a dependent's numbers</div>
+    </div>
+  </div>
+
+  <section class="reflection">
+    <span class="eyebrow">Reflection</span>
+    <h2>What this project taught me</h2>
+    <p>The real constraint here wasn't visual — it was informational. The instinct with dense data is to either cram it all in or hide most of it behind a tap. Neither felt right for something as high-stakes as "how much will this cost me." Swiping let every number stay reachable without ever asking the member to read more than one tier at a time.</p>
+    <p>Reusing the same member switcher on the card and the detail page also reinforced something I keep coming back to: consistency isn't just visual polish, it's what makes a small feature feel like it was designed as one thing instead of three.</p>
+  </section>
+
+  <footer>
+    <a href="index.html">← Back to portfolio</a>
+    <span>© 2026</span>
+  </footer>
+
+</div>
+
+</body>
+</html>

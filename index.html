@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="UX Product Designer focused on systems thinking, research, and complex problems in healthcare and other highly regulated, data-sensitive environments. Currently at Raven, partnered with Collective Health.">
+<meta name="author" content="Emily Teixeira">
+<meta property="og:title" content="Emily Teixeira — Product Design">
+<meta property="og:description" content="UX Product Designer focused on systems thinking, research, and complex problems in healthcare and other highly regulated, data-sensitive environments. Currently at Raven, partnered with Collective Health.">
+<meta property="og:image" content="images/index-01.webp">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<title>Emily Teixeira — Product Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#2C2C2C;
+    --muted:#828282;
+    --line:#CECECE;
+    --accent:#AF61F7;
+    --accent-soft:#FCF8FF;
+    --dark2:#5B5B5B;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; }
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    padding:32px 0 24px;
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    border-bottom:1px solid var(--line);
+  }
+  header .name{
+    font-family:'Inter', sans-serif;
+    font-size:18px;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  nav{ display:flex; gap:28px; font-size:14px; color:var(--muted); }
+  nav a:hover{ color:var(--ink); }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:88px 0 96px;
+  }
+  .hero h1{
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:clamp(32px, 4.6vw, 48px);
+    line-height:1.18;
+    letter-spacing:-0.02em;
+  }
+  .hero p{
+    margin-top:22px;
+    font-size:16px;
+    color:var(--muted);
+  }
+  .hero .meta{
+    margin-top:36px;
+    display:flex;
+    gap:22px;
+    font-size:13px;
+    color:var(--muted);
+  }
+  .hero .meta span{ border-left:1px solid var(--line); padding-left:16px; }
+  .hero .meta span:first-child{ border-left:none; padding-left:0; }
+
+  /* ---------- Section heading ---------- */
+  .section-head{
+    padding-top:64px;
+    padding-bottom:28px;
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .section-head h2{
+    font-family:'Inter', sans-serif;
+    font-size:24px;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+
+  /* ---------- Filters ---------- */
+  .filters{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .filter-btn{
+    font-family:'Inter', sans-serif;
+    font-size:13px;
+    padding:7px 14px;
+    border:1px solid var(--line);
+    border-radius:100px;
+    background:transparent;
+    color:var(--muted);
+    cursor:pointer;
+    transition:background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .filter-btn:hover{ border-color:var(--accent); color:var(--ink); }
+  .filter-btn.active{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:var(--paper);
+  }
+
+  /* ---------- Work list ---------- */
+  .work-list{
+    border-top:1px solid var(--line);
+  }
+  .work-row{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    padding:26px 0;
+    border-bottom:1px solid var(--line);
+    cursor:pointer;
+    position:relative;
+    transition:opacity 0.25s ease, transform 0.25s ease;
+  }
+  .work-row.is-hidden{
+    opacity:0;
+    transform:translateY(-4px);
+    display:none;
+  }
+  .work-row .title-group{ display:flex; align-items:baseline; gap:16px; }
+  .work-row h3{
+    font-family:'Inter', sans-serif;
+    font-weight:500;
+    font-size:22px;
+    letter-spacing:-0.01em;
+    transition:color 0.15s;
+  }
+  .work-row:hover h3{ color:var(--accent); }
+  .work-row .tag{
+    font-size:12.5px;
+    color:var(--muted);
+  }
+  .work-row .year{
+    font-size:13px;
+    color:var(--muted);
+    flex-shrink:0;
+  }
+
+  /* ---------- About ---------- */
+  .about{
+    padding-top:64px;
+    padding-bottom:64px;
+    display:grid;
+    grid-template-columns:200px 1fr;
+    gap:48px;
+    border-top:1px solid var(--line);
+  }
+  .about .mark{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:var(--accent-soft);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:32px;
+    color:var(--accent);
+    overflow:hidden;
+  }
+  .about .mark img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .about p{
+    color:var(--muted);
+    font-size:15.5px;
+  }
+  .about p + p{ margin-top:14px; }
+
+  @media (max-width:640px){
+    .about{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- Contact ---------- */
+  .contact{
+    padding-top:56px;
+    padding-bottom:96px;
+    border-top:1px solid var(--line);
+  }
+  form{
+    max-width:480px;
+    margin-top:24px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+  .field label{
+    display:block;
+    font-size:13px;
+    color:var(--muted);
+    margin-bottom:6px;
+  }
+  .field input, .field textarea{
+    width:100%;
+    font-family:'Inter', sans-serif;
+    font-size:15px;
+    padding:10px 0;
+    background:transparent;
+    border:none;
+    border-bottom:1px solid var(--line);
+    color:var(--ink);
+    resize:none;
+    transition:border-color 0.15s;
+  }
+  .field input:focus, .field textarea:focus{ border-color:var(--accent); }
+  .send-btn{
+    align-self:flex-start;
+    margin-top:8px;
+    font-family:'Inter', sans-serif;
+    font-size:14px;
+    font-weight:500;
+    padding:12px 24px;
+    background:var(--ink);
+    color:var(--paper);
+    border:none;
+    border-radius:2px;
+    cursor:pointer;
+    transition:background 0.15s;
+  }
+  .send-btn:hover{ background:var(--accent); }
+  .form-note{
+    font-size:13px;
+    color:var(--muted);
+    margin-top:4px;
+    min-height:18px;
+  }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:24px 0 40px;
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    color:var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="name">Emily Teixeira</div>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>I turn ambiguous problems into clear digital systems.</h1>
+    <p>I'm Emily, a UX Product Designer focused on systems thinking, research, and solving complex problems in healthcare and other highly regulated, data-sensitive environments. Currently at Raven, partnered with Collective Health.</p>
+    <div class="meta">
+      <span>Based in Santiago, Chile</span>
+      <span>Raven × Collective Health</span>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="section-head">
+      <h2>Selected work</h2>
+      <div class="filters" id="filters" role="group" aria-label="Filter work by discipline">
+        <button type="button" class="filter-btn active" data-filter="todos" aria-pressed="true">All</button>
+        <button type="button" class="filter-btn" data-filter="sistema" aria-pressed="false">Design Systems</button>
+        <button type="button" class="filter-btn" data-filter="movil" aria-pressed="false">Mobile Product</button>
+        <button type="button" class="filter-btn" data-filter="web" aria-pressed="false">Web Product</button>
+        <button type="button" class="filter-btn" data-filter="research" aria-pressed="false">Research</button>
+      </div>
+    </div>
+
+    <div class="work-list" id="workList">
+
+      <a class="work-row" data-cat="movil" href="case-study-smartfit.html">
+        <div class="title-group">
+          <h3>SmartFit</h3>
+          <span class="tag">Mobile Product · Fitness App</span>
+        </div>
+        <span class="year">2022</span>
+      </a>
+
+      <a class="work-row" data-cat="movil" href="case-study-accumulators.html">
+        <div class="title-group">
+          <h3>Multi-Tier Accumulators</h3>
+          <span class="tag">Mobile Product · Healthcare</span>
+        </div>
+        <span class="year">2024</span>
+      </a>
+
+      <a class="work-row" data-cat="research" href="case-study-member-research.html">
+        <div class="title-group">
+          <h3>Listening in Spanish</h3>
+          <span class="tag">Research · Healthcare</span>
+        </div>
+        <span class="year">2025</span>
+      </a>
+
+      <a class="work-row" data-cat="web" href="case-study-duemint.html">
+        <div class="title-group">
+          <h3>Duemint</h3>
+          <span class="tag">Web Product · Fintech</span>
+        </div>
+        <span class="year">2023</span>
+      </a>
+
+      <a class="work-row" data-cat="web" href="case-study-idcards.html">
+        <div class="title-group">
+          <h3>ID Card Tool</h3>
+          <span class="tag">Web Product · Healthcare</span>
+        </div>
+        <span class="year">2025</span>
+      </a>
+
+      <a class="work-row" data-cat="sistema" href="case-study-duemint-design-system.html">
+        <div class="title-group">
+          <h3>Duemint Design System</h3>
+          <span class="tag">Design System · Fintech</span>
+        </div>
+        <span class="year">2023</span>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="mark"><img loading="lazy" decoding="async" src="images/index-01.webp" alt="Emily Teixeira"></div>
+    <div>
+      <p>I'm Emily, a UX Product Designer with a strategic focus on systems thinking, research, and solving complex problems within the healthcare industry and other highly regulated, data-sensitive environments. I specialize in translating ambiguous business and compliance challenges into scalable, intuitive digital experiences.</p>
+      <p>Currently at Raven, partnered with Collective Health, I lead product design for Claims and Internal Product areas — designing complex workflows around adjudication, EOBs, appeals/disputes, provider payments, and privacy-sensitive data access. I partner closely with Product, Engineering, and Compliance teams to navigate a highly regulated healthcare ecosystem, balancing business goals, technical constraints, and user needs.</p>
+      <p>I also own the scaling and continuous improvement of our design system, ensuring consistency, efficiency, and cohesion across interconnected platform capabilities.</p>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="section-head" style="padding-bottom:0;">
+      <h2>Let's talk</h2>
+    </div>
+    <form id="contactForm">
+      <div class="field">
+        <label for="fname">Name</label>
+        <input type="text" id="fname" name="name" autocomplete="name" required>
+      </div>
+      <div class="field">
+        <label for="femail">Email</label>
+        <input type="email" id="femail" name="email" autocomplete="email" required>
+      </div>
+      <div class="field">
+        <label for="fmsg">Message</label>
+        <textarea id="fmsg" name="message" rows="4" required></textarea>
+      </div>
+      <button type="submit" class="send-btn">Send message</button>
+      <div class="form-note" id="formNote" role="status" aria-live="polite"></div>
+    </form>
+  </section>
+
+  <footer>
+    <span>Emily Teixeira</span>
+    <span>© 2026</span>
+  </footer>
+
+</div>
+
+
+<script>
+  // ---------- Filtering ----------
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const rows = document.querySelectorAll('.work-row');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
+      const f = btn.dataset.filter;
+
+      rows.forEach(row => {
+        const match = f === 'todos' || row.dataset.cat === f;
+        row.classList.toggle('is-hidden', !match);
+        row.toggleAttribute('hidden', !match);
+      });
+    });
+  });
+
+  // ---------- Contact form (static demo) ----------
+  const form = document.getElementById('contactForm');
+  const note = document.getElementById('formNote');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    note.textContent = 'Thanks — message received. (This form is a static demo: connect a form service to receive submissions.)';
+  });
+</script>
+
+</body>
+</html>

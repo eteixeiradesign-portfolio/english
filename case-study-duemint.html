@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Redesigning Duemint end to end — turning a slow, manual back office workflow into an automated, self-serve fintech product for businesses of every size.">
+<meta name="author" content="Emily Teixeira">
+<meta property="og:title" content="Duemint Redesign — Emily Teixeira">
+<meta property="og:description" content="Redesigning Duemint end to end — turning a slow, manual back office workflow into an automated, self-serve fintech product for businesses of every size.">
+<meta property="og:image" content="images/case-study-duemint-01.webp">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<title>Duemint Redesign — Emily Teixeira</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#2C2C2C;
+    --muted:#828282;
+    --line:#CECECE;
+    --accent:#AF61F7;
+    --accent-soft:#FCF8FF;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:920px; margin:0 auto; padding:0 28px; }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+  @media (prefers-reduced-motion: reduce){ *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; } }
+  img{ max-width:100%; display:block; }
+
+  header{
+    padding:32px 0 24px;
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    border-bottom:1px solid var(--line);
+  }
+  header .name{ font-family:'Inter', sans-serif; font-size:18px; font-weight:600; letter-spacing:-0.01em; }
+  nav{ display:flex; gap:28px; font-size:14px; color:var(--muted); }
+  nav a:hover{ color:var(--ink); }
+
+  .back{ padding:28px 0 0; font-size:13px; color:var(--muted); display:inline-block; }
+  .back:hover{ color:var(--accent); }
+
+  .cs-hero{ padding:28px 0 48px; }
+  .eyebrow{ font-size:13px; color:var(--accent); font-weight:500; }
+  .cs-hero h1{
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:clamp(30px, 4.4vw, 44px);
+    line-height:1.18;
+    letter-spacing:-0.02em;
+    margin-top:14px;
+  }
+  .cs-hero p{ margin-top:18px; font-size:16px; color:var(--muted); }
+
+  .meta-grid{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    gap:20px;
+    padding:32px 0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .meta-grid div span{ display:block; font-size:12.5px; color:var(--muted); margin-bottom:6px; }
+  .meta-grid div strong{ font-size:13.5px; font-weight:500; line-height:1.4; display:block; }
+  @media (max-width:720px){ .meta-grid{ grid-template-columns:repeat(2, 1fr); } }
+
+  .problem{
+    background:var(--ink);
+    color:var(--paper);
+    padding:56px 28px;
+    margin:0 -28px;
+  }
+  .problem .wrap-inner{ margin:0 auto; }
+  .problem .eyebrow{ color:#C9A6F0; }
+  .problem h2{
+    font-family:'Inter', sans-serif;
+    font-weight:500;
+    font-size:clamp(22px,3vw,30px);
+    line-height:1.3;
+    margin-top:14px;
+  }
+
+  section.stage{ padding:64px 0; border-bottom:1px solid var(--line); }
+  section.stage:last-of-type{ border-bottom:none; }
+  .stage .eyebrow{ margin-bottom:12px; display:block; }
+  .stage h2{
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:26px;
+    letter-spacing:-0.01em;
+    margin-bottom:16px;
+  }
+  .stage p{ color:var(--muted); font-size:15.5px; }
+  .stage p + p{ margin-top:12px; }
+
+  .compare{ margin-top:28px; display:flex; flex-direction:column; gap:0; }
+  .compare .row{ display:grid; grid-template-columns:140px 1fr 1fr; gap:20px; border-top:1px solid var(--line); padding:16px 0; }
+  .compare .row.head{ font-size:12.5px; color:var(--muted); font-weight:500; border-top:none; padding-bottom:8px; }
+  .compare .name{ font-size:14px; font-weight:600; }
+  .compare ul{ list-style:none; display:flex; flex-direction:column; gap:6px; }
+  .compare li{ font-size:13.5px; color:var(--muted); padding-left:16px; position:relative; }
+  .compare li.pro::before{ content:'+'; position:absolute; left:0; color:var(--accent); font-weight:700; }
+  .compare li.con::before{ content:'–'; position:absolute; left:0; color:var(--line); font-weight:700; }
+  @media (max-width:640px){ .compare .row{ grid-template-columns:1fr; gap:8px; } .compare .name{ padding-top:8px; } }
+
+  .personas{ display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:28px; }
+  @media (max-width:640px){ .personas{ grid-template-columns:1fr; } }
+  .persona{ border:1px solid var(--line); border-radius:2px; padding:22px; }
+  .persona .who{ font-size:15px; font-weight:600; }
+  .persona .sub{ font-size:12.5px; color:var(--accent); margin-top:2px; }
+  .persona .pain{ margin-top:14px; font-size:13px; color:var(--muted); }
+  .persona .pain b{ color:var(--ink); font-weight:500; }
+  .persona ul{ margin-top:6px; list-style:none; display:flex; flex-direction:column; gap:6px; }
+  .persona li{ font-size:13.5px; color:var(--muted); display:flex; gap:10px; }
+  .persona li::before{ content:'—'; color:var(--line); flex-shrink:0; }
+
+  .ia-tree{ margin-top:28px; display:flex; flex-direction:column; gap:10px; }
+  .ia-tree .branch{ display:flex; gap:14px; flex-wrap:wrap; }
+  .ia-tree .node{ font-size:13px; padding:8px 14px; background:var(--accent-soft); color:var(--ink); border-radius:2px; font-weight:500; }
+  .ia-tree .sub{ font-size:13px; color:var(--muted); padding:8px 0 8px 4px; }
+
+  .test-setup{ display:flex; gap:32px; margin-top:24px; flex-wrap:wrap; padding:20px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .test-setup div{ font-size:13.5px; color:var(--muted); }
+  .test-setup div b{ color:var(--ink); font-weight:500; }
+
+  .finding-row{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; margin-top:24px; }
+  @media (max-width:720px){ .finding-row{ grid-template-columns:1fr; } }
+  .finding-row .f{ border:1px solid var(--line); border-radius:2px; padding:16px; font-size:13.5px; color:var(--muted); }
+  .finding-row .f b{ color:var(--ink); font-weight:600; }
+  .finding-label{ font-size:13px; font-weight:600; margin-top:32px; }
+  .finding-label.no{ color:#B23B3B; }
+  .finding-label.yes{ color:var(--accent); }
+
+  .stat-row{ display:flex; gap:32px; margin-top:28px; flex-wrap:wrap; }
+  .stat{ min-width:150px; }
+  .stat .num{ font-size:32px; font-weight:600; color:var(--accent); }
+  .stat .label{ font-size:13px; color:var(--muted); margin-top:4px; max-width:200px; }
+
+  .gallery-head{ padding-top:64px; padding-bottom:8px; }
+  .gallery-head .eyebrow{ margin-bottom:12px; display:block; }
+  .gallery-head h2{ font-family:'Inter', sans-serif; font-weight:600; font-size:28px; letter-spacing:-0.01em; }
+  .gallery-head p{ margin-top:14px; color:var(--muted); font-size:15.5px; }
+
+  .gallery-stack{ display:flex; flex-direction:column; gap:40px; padding:40px 0; }
+  /* card as a column so the caption band absorbs the leftover height of a stretched
+     grid row: dividers line up and no dead space is left under a shorter caption */
+  /* showcase treatment: the mockup sits centred inside a padded white card with its own
+     shadow (margin-block:auto does the centring); the caption reserves a fixed number of
+     lines so the divider lines up across a row and no dead space is left under it */
+  .shot{ border:1px solid var(--line); border-radius:4px; overflow:hidden; background:var(--paper); padding:28px; display:flex; flex-direction:column; }
+  .shot img{ width:100%; display:block; margin-block:auto; filter:drop-shadow(0 6px 20px rgba(28,27,25,0.16)); }
+  .shot .cap{ margin:28px -28px -28px; padding:12px 28px; font-size:13px; line-height:20px; color:var(--muted); border-top:1px solid var(--line); background:var(--paper); }
+  /* la reserva del caption solo hace falta donde hay dos o mas tarjetas por fila:
+     es lo que alinea los divisores. Con una sola tarjeta por fila seria aire muerto. */
+  /* las dos capturas del before/after tienen proporciones distintas de origen (1.4577 vs
+     1.5341). Fijar una proporcion comun con contain las alinea sin recortar contenido:
+     la mas ancha recibe ~6px de aire arriba y abajo, invisible sobre la tarjeta blanca. */
+  .gallery-pair.compare .shot img{ aspect-ratio:2000/1372; object-fit:contain; }
+  .gallery-pair .shot .cap{ min-height:84px; }                          /* 2 por fila: hasta 3 lineas */
+  @media (max-width:560px){ .gallery-pair .shot .cap{ min-height:0; } }  /* 1 columna: sin reserva */
+  .gallery-pair{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  @media (max-width:560px){ .gallery-pair{ grid-template-columns:1fr; } }
+
+  .dsys-note{
+    background:var(--accent-soft);
+    border-radius:4px;
+    padding:24px;
+    margin-top:24px;
+    font-size:14px;
+    color:var(--ink);
+  }
+  .dsys-note a{ color:var(--accent); font-weight:500; }
+
+  .reflection{ padding:56px 0 72px; }
+  .reflection .eyebrow{ margin-bottom:12px; display:block; }
+  .reflection h2{ font-family:'Inter', sans-serif; font-weight:600; font-size:24px; margin-bottom:16px; }
+  .reflection p{ color:var(--muted); font-size:15.5px; }
+  .reflection p + p{ margin-top:12px; }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:24px 0 40px;
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    color:var(--muted);
+  }
+  footer a:hover{ color:var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="name">Emily Teixeira</div>
+    <nav>
+      <a href="index.html#work">Work</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <a class="back" href="index.html">← Back to portfolio</a>
+
+  <section class="cs-hero">
+    <span class="eyebrow">Product Design · Duemint</span>
+    <h1>Effortless financial management for businesses of every size.</h1>
+    <p>Duemint is a fintech platform that lets companies pay, transfer, and collect money from one digital wallet. We redesigned it end to end — turning a slow, manual back office workflow into an automated, self-serve product.</p>
+  </section>
+
+  <div class="meta-grid">
+    <div><span>Role</span><strong>UX/UI Designer</strong></div>
+    <div><span>Team</span><strong>2 UX/UI, 1 Content, 1 PM, 1 Eng lead</strong></div>
+    <div><span>Timeline</span><strong>Q2 2022 – Q2 2023</strong></div>
+    <div><span>Tools</span><strong>Figma, FigJam, Miro, Storybook</strong></div>
+    <div><span>Client</span><strong>Duemint SpA</strong></div>
+  </div>
+
+  <div class="problem">
+    <div class="wrap-inner">
+      <span class="eyebrow">The problem</span>
+      <h2>How might we simplify financial management — payments, transfers, and collections — so money moves faster and cash flow never gets lost in the process?</h2>
+    </div>
+  </div>
+
+  <section class="stage">
+    <span class="eyebrow">Discovery</span>
+    <h2>Why a financial product, and why now</h2>
+    <p>During discovery we found two problems hiding behind one request. Small businesses were stuck in bureaucratic account-opening processes that delayed their whole financial setup. Larger companies wanted one unified place to collect, pay, automate repetitive tasks, and keep a real handle on income and outgoings. That gap is what turned "improve the invoicing tool" into "build a digital wallet."</p>
+    <p>We benchmarked the closest competitors to understand where the market already delivered, and where Duemint could differentiate.</p>
+    <div class="compare">
+      <div class="row head"><span></span><span>Strengths</span><span>Gaps</span></div>
+      <div class="row">
+        <span class="name">Bemmbo</span>
+        <ul><li class="pro">Wide range of payment methods</li><li class="pro">Built for the LatAm market</li></ul>
+        <ul><li class="con">Fewer advanced features</li><li class="con">Limited global recognition</li></ul>
+      </div>
+      <div class="row">
+        <span class="name">Stripe</span>
+        <ul><li class="pro">Global reach, flexible integrations</li><li class="pro">Strong API, fraud prevention</li></ul>
+        <ul><li class="con">Slightly higher fees</li><li class="con">Needs technical know-how to use fully</li></ul>
+      </div>
+      <div class="row">
+        <span class="name">Kushki</span>
+        <ul><li class="pro">Strong presence across LatAm</li><li class="pro">Simple, accessible for small teams</li></ul>
+        <ul><li class="con">Limited customization</li><li class="con">Smaller coverage vs. global players</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="stage">
+    <span class="eyebrow">Define</span>
+    <h2>Getting closer to two very different users</h2>
+    <p>What started as a small feature inside an existing product kept growing as we talked to users — until it was clear this needed to be a near-independent product with its own architecture.</p>
+    <div class="personas">
+      <div class="persona">
+        <div class="who">Carmen Mora</div>
+        <div class="sub">39 · Entrepreneur · Santiago, Chile</div>
+        <div class="pain"><b>Pain points</b></div>
+        <ul>
+          <li>No fast way to receive payments from suppliers</li>
+          <li>Banking red tape made opening a business account slow</li>
+        </ul>
+      </div>
+      <div class="persona">
+        <div class="who">Sergio Hormazabal</div>
+        <div class="sub">45 · Finance Manager · Santiago, Chile</div>
+        <div class="pain"><b>Pain points</b></div>
+        <ul>
+          <li>Needed several apps just to complete one transaction</li>
+          <li>Mass payments were slow, and platform downtime made it worse</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:28px;">Those conversations shaped an information architecture built around how people actually think about their money — not around our internal modules.</p>
+    <div class="ia-tree">
+      <div class="branch"><span class="node">Home</span></div>
+      <div class="sub">→ Wallet overview, transactions</div>
+      <div class="branch"><span class="node">Send money</span></div>
+      <div class="sub">→ Outgoing, transfers, mass payments, recipients</div>
+      <div class="branch"><span class="node">Receive money</span></div>
+      <div class="sub">→ Incoming, top-ups, payment links, subscriptions</div>
+      <div class="branch"><span class="node">Settings & account</span></div>
+      <div class="sub">→ Company data, roles & permissions, signatures, help</div>
+    </div>
+  </section>
+
+  <section class="stage">
+    <span class="eyebrow">Ideate</span>
+    <h2>Testing before committing to pixels</h2>
+    <p>Before investing in high-fidelity screens, we tested low-fidelity wireframes with real usage tasks — recruiting a mix of current customers and people who'd only used competitor tools.</p>
+    <div class="test-setup">
+      <div><b>7 users</b> · Chile</div>
+      <div><b>1 hour</b> per session</div>
+      <div><b>3 tasks:</b> find & complete a transfer, approve a pending signature, create a recipient</div>
+    </div>
+    <div class="finding-label no">What didn't work</div>
+    <div class="finding-row">
+      <div class="f"><b>5 of 7</b> couldn't find the payments section.</div>
+      <div class="f"><b>4 of 7</b> were confused by the signatures flow — it wasn't part of their daily routine.</div>
+      <div class="f"><b>5 of 7</b> asked why the wallet lived outside the payments section.</div>
+    </div>
+    <div class="finding-label yes">What worked</div>
+    <div class="finding-row">
+      <div class="f"><b>4 of 7</b> completed a transfer successfully once they found the section.</div>
+      <div class="f"><b>6 users</b> valued having a visual chart of their transaction results.</div>
+      <div class="f"><b>Everyone</b> created a new recipient with zero friction.</div>
+    </div>
+    <p style="margin-top:24px;">The fix wasn't cosmetic: we split the single "payments" module the team had originally planned into a clear wallet overview plus dedicated send/receive spaces — directly answering the confusion we saw in testing.</p>
+    <div class="gallery-pair compare" style="margin-top:28px;">
+      <div class="shot">
+        <img loading="lazy" decoding="async" src="images/case-study-duemint-01.webp" alt="Early grayscale iteration consolidating payments into a single dashboard">
+        <div class="cap">Before — an early iteration consolidating everything into one payments dashboard</div>
+      </div>
+      <div class="shot">
+        <img loading="lazy" decoding="async" src="images/case-study-duemint-02.webp" alt="Final wallet home screen after separating the wallet from payments">
+        <div class="cap">After — the wallet got its own home once testing showed the confusion this caused</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stage">
+    <span class="eyebrow">Design System</span>
+    <h2>Built for scale, not just for launch</h2>
+    <p>Alongside the wireframes, we built Duemint's design system in parallel — components, tokens, and a full Storybook library with auto-layout, so engineering could implement without guesswork.</p>
+    <div class="dsys-note">
+      This system grew into its own project. <a href="case-study-duemint-design-system.html">See the dedicated Design System case study →</a>
+    </div>
+  </section>
+
+  <section class="stage" style="border-bottom:none;">
+    <span class="eyebrow">Impact</span>
+    <h2>What changed after launch</h2>
+    <p>Six months after launch, Duemint saw measurable movement on both growth and adoption.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="num">+15%</div><div class="label">growth in new clients within 6 months</div></div>
+      <div class="stat"><div class="num">35%</div><div class="label">of existing invoicing customers adopted the new wallet</div></div>
+    </div>
+  </section>
+
+  <div class="gallery-head">
+    <span class="eyebrow">Final product</span>
+    <h2>Duemint, in use</h2>
+    <p>From the wallet overview to a fully auditable transfer, every screen was designed to remove a step — not add one.</p>
+  </div>
+
+  <div class="gallery-stack">
+    <div class="shot">
+      <img loading="lazy" decoding="async" src="images/case-study-duemint-03.webp" alt="Wallet home screen showing balance, cash flow chart, and pending amounts">
+      <div class="cap">Wallet home — balance, cash flow, and amounts pending release or verification, all in one glance</div>
+    </div>
+    <div class="shot">
+      <img loading="lazy" decoding="async" src="images/case-study-duemint-04.webp" alt="Guided panel for transferring money between wallets">
+      <div class="cap">Transfer between wallets — a guided, three-step panel that replaced a confusing multi-app flow</div>
+    </div>
+    <div class="shot">
+      <img loading="lazy" decoding="async" src="images/case-study-duemint-05.webp" alt="List of payment links with status and payments received">
+      <div class="cap">Payment links — status and payments received for every link, at a glance</div>
+    </div>
+    <div class="shot">
+      <img loading="lazy" decoding="async" src="images/case-study-duemint-06.webp" alt="Branded checkout page for paying a Duemint payment link">
+      <div class="cap">The paying side — a branded checkout for whoever's on the other end of a payment link</div>
+    </div>
+    <div class="shot">
+      <img loading="lazy" decoding="async" src="images/case-study-duemint-09.webp" alt="Account settings screen with a phone verification panel and a one-time code modal">
+      <div class="cap">Account security — phone verification by one-time code, required before any sensitive change</div>
+    </div>
+    <div class="gallery-pair">
+      <div class="shot">
+        <img loading="lazy" decoding="async" src="images/case-study-duemint-07.webp" alt="Mobile transfer detail screen showing amount and parties">
+        <div class="cap">Transfer detail — amount, sender, and recipient</div>
+      </div>
+      <div class="shot">
+        <img loading="lazy" decoding="async" src="images/case-study-duemint-08.webp" alt="Mobile transfer status screen showing a full audit trail">
+        <div class="cap">Full audit trail — from creation to execution</div>
+      </div>
+    </div>
+  </div>
+
+  <section class="reflection">
+    <span class="eyebrow">Reflection</span>
+    <h2>What this project taught me</h2>
+    <p>The biggest lesson was learning to prioritize by user need instead of by request volume. Everyone wanted mass payments and subscriptions on day one, but external constraints pushed those back — and the product still succeeded because we'd designed the core flows around what people actually got stuck on.</p>
+    <p>Investing real time in the design system paid off well past launch: it gave the team a scalable base to keep refining components without starting from scratch every time.</p>
+  </section>
+
+  <footer>
+    <a href="index.html">← Back to portfolio</a>
+    <span>© 2026</span>
+  </footer>
+
+</div>
+
+</body>
+</html>
