@@ -47,7 +47,7 @@
   }
 
   /* focus visibility */
-  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+  a:focus-visible, button:focus-visible{
     outline:2px solid var(--accent);
     outline-offset:3px;
   }
@@ -223,53 +223,20 @@
     padding-bottom:96px;
     border-top:1px solid var(--line);
   }
-  form{
-    max-width:480px;
+  .contact-links{
     margin-top:24px;
     display:flex;
-    flex-direction:column;
-    gap:18px;
+    flex-wrap:wrap;
+    gap:28px;
+    font-size:16px;
   }
-  .field label{
-    display:block;
-    font-size:13px;
-    color:var(--muted);
-    margin-bottom:6px;
-  }
-  .field input, .field textarea{
-    width:100%;
-    font-family:'Inter', sans-serif;
-    font-size:15px;
-    padding:10px 0;
-    background:transparent;
-    border:none;
-    border-bottom:1px solid var(--line);
+  .contact-links a{
     color:var(--ink);
-    resize:none;
-    transition:border-color 0.15s;
+    border-bottom:1px solid var(--line);
+    padding-bottom:2px;
+    transition:color 0.15s, border-color 0.15s;
   }
-  .field input:focus, .field textarea:focus{ border-color:var(--accent); }
-  .send-btn{
-    align-self:flex-start;
-    margin-top:8px;
-    font-family:'Inter', sans-serif;
-    font-size:14px;
-    font-weight:500;
-    padding:12px 24px;
-    background:var(--ink);
-    color:var(--paper);
-    border:none;
-    border-radius:2px;
-    cursor:pointer;
-    transition:background 0.15s;
-  }
-  .send-btn:hover{ background:var(--accent); }
-  .form-note{
-    font-size:13px;
-    color:var(--muted);
-    margin-top:4px;
-    min-height:18px;
-  }
+  .contact-links a:hover{ color:var(--accent); border-color:var(--accent); }
 
   footer{
     border-top:1px solid var(--line);
@@ -381,22 +348,10 @@
     <div class="section-head" style="padding-bottom:0;">
       <h2>Let's talk</h2>
     </div>
-    <form id="contactForm">
-      <div class="field">
-        <label for="fname">Name</label>
-        <input type="text" id="fname" name="name" autocomplete="name" required>
-      </div>
-      <div class="field">
-        <label for="femail">Email</label>
-        <input type="email" id="femail" name="email" autocomplete="email" required>
-      </div>
-      <div class="field">
-        <label for="fmsg">Message</label>
-        <textarea id="fmsg" name="message" rows="4" required></textarea>
-      </div>
-      <button type="submit" class="send-btn">Send message</button>
-      <div class="form-note" id="formNote" role="status" aria-live="polite"></div>
-    </form>
+    <div class="contact-links">
+      <a href="mailto:eteixeiradesign@gmail.com">eteixeiradesign@gmail.com</a>
+      <a href="https://www.linkedin.com/in/emilyteixeira-productdesigner/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
   </section>
 
   <footer>
@@ -428,15 +383,6 @@
         row.toggleAttribute('hidden', !match);
       });
     });
-  });
-
-  // ---------- Contact form (static demo) ----------
-  const form = document.getElementById('contactForm');
-  const note = document.getElementById('formNote');
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    note.textContent = 'Thanks — message received. (This form is a static demo: connect a form service to receive submissions.)';
   });
 </script>
 
