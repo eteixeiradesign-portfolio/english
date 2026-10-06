@@ -41,7 +41,6 @@
     border-top:1px solid var(--line);
     display:flex;
     align-items:baseline;
-    justify-content:space-between;
     gap:20px;
     flex-wrap:wrap;
     font-size:13.5px;
@@ -60,35 +59,46 @@
   }
   .see-all:hover{ gap:14px; }
 
-  /* ---------- Proyectos destacados ---------- */
-  .featured{ padding:48px 0 8px; }
-  .feature + .feature-pair, .feature-pair{ margin-top:56px; }
-  .feature-pair{ display:grid; grid-template-columns:1fr 1fr; gap:32px; }
-  @media (max-width:640px){ .feature-pair{ grid-template-columns:1fr; gap:48px; } }
-
-  .feature h2{ font-size:22px; font-weight:600; letter-spacing:-0.01em; }
-  .feature h2 a{ transition:color 0.15s; }
-  .feature:hover h2 a{ color:var(--accent); }
-  .feature .blurb{ margin-top:6px; font-size:14.5px; color:var(--muted); }
-  .feature .media{
-    margin-top:18px;
-    display:block;
-    background:var(--accent-soft);
-    border:1px solid var(--line);
-    border-radius:4px;
-    overflow:hidden;
-    padding:32px;
+  /* ---------- Destacados: misma lista que la pagina Work ---------- */
+  .featured{ padding:40px 0 8px; }
+  /* ---------- Work list ---------- */
+  .work-list{
+    border-top:1px solid var(--line);
+  }
+  .work-row{
     display:flex;
-    align-items:center;
-    justify-content:center;
+    align-items:baseline;
+    justify-content:space-between;
+    padding:26px 0;
+    border-bottom:1px solid var(--line);
+    cursor:pointer;
+    position:relative;
+    transition:opacity 0.25s ease, transform 0.25s ease;
   }
-  .feature.big .media{ aspect-ratio:16/9; }
-  .feature.small .media{ aspect-ratio:4/3; }
-  .feature .media img{
-    max-width:100%; max-height:100%; width:auto; height:auto;
-    filter:drop-shadow(0 6px 20px rgba(28,27,25,0.16));
+  .work-row.is-hidden{
+    opacity:0;
+    transform:translateY(-4px);
+    display:none;
   }
-  @media (max-width:480px){ .feature .media{ padding:20px; } }
+  .work-row .title-group{ display:flex; align-items:baseline; gap:16px; }
+  .work-row h3{
+    font-family:'Inter', sans-serif;
+    font-weight:500;
+    font-size:22px;
+    letter-spacing:-0.01em;
+    transition:color 0.15s;
+  }
+  .work-row:hover h3{ color:var(--accent); }
+  .work-row .tag{
+    font-size:12.5px;
+    color:var(--muted);
+  }
+  .work-row .year{
+    font-size:13px;
+    color:var(--muted);
+    flex-shrink:0;
+  }
+  .featured .see-all{ margin-top:28px; }
 
   /* ---------- Experiencia ---------- */
   .experience{
@@ -141,38 +151,37 @@
           <span>Based in Santiago, Chile</span>
           <span>Raven &times; Collective Health</span>
         </div>
-        <a class="see-all" href="work.html">See all projects <span aria-hidden="true">&darr;</span></a>
       </div>
     </section>
 
     <section class="featured" aria-labelledby="featured-h">
       <h2 id="featured-h" class="visually-hidden">Featured projects</h2>
 
-      <article class="feature big">
-        <h2><a href="case-study-idcards.html">ID Card Tool</a></h2>
-        <p class="blurb">Web Product &middot; Healthcare &middot; 2025</p>
-        <a class="media" href="case-study-idcards.html" tabindex="-1" aria-hidden="true">
-          <img loading="lazy" decoding="async" src="images/case-study-idcards-01.webp" alt="">
+      <div class="work-list">
+        <a class="work-row" href="case-study-idcards.html">
+          <div class="title-group">
+            <h3>ID Card Tool</h3>
+            <span class="tag">Web Product · Healthcare</span>
+          </div>
+          <span class="year">2025</span>
         </a>
-      </article>
-
-      <div class="feature-pair">
-        <article class="feature small">
-          <h2><a href="case-study-member-research.html">Listening in Spanish</a></h2>
-          <p class="blurb">Research &middot; Healthcare &middot; 2025</p>
-          <a class="media" href="case-study-member-research.html" tabindex="-1" aria-hidden="true">
-            <img loading="lazy" decoding="async" src="images/case-study-member-research-01.webp" alt="">
-          </a>
-        </article>
-
-        <article class="feature small">
-          <h2><a href="case-study-accumulators.html">Multi-Tier Accumulators</a></h2>
-          <p class="blurb">Mobile Product &middot; Healthcare &middot; 2024</p>
-          <a class="media" href="case-study-accumulators.html" tabindex="-1" aria-hidden="true">
-            <img loading="lazy" decoding="async" src="images/case-study-accumulators-01.webp" alt="">
-          </a>
-        </article>
+        <a class="work-row" href="case-study-member-research.html">
+          <div class="title-group">
+            <h3>Listening in Spanish</h3>
+            <span class="tag">Research · Healthcare</span>
+          </div>
+          <span class="year">2025</span>
+        </a>
+        <a class="work-row" href="case-study-accumulators.html">
+          <div class="title-group">
+            <h3>Multi-Tier Accumulators</h3>
+            <span class="tag">Mobile Product · Healthcare</span>
+          </div>
+          <span class="year">2024</span>
+        </a>
       </div>
+
+      <a class="see-all" href="work.html">See all projects <span aria-hidden="true">&rarr;</span></a>
     </section>
 
     <section class="experience" aria-labelledby="exp-h">
