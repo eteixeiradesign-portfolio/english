@@ -237,8 +237,11 @@
     color:var(--ink);
     transition:color 0.15s;
   }
-  /* los iconos heredan currentColor, asi que acompanan el hover del enlace */
-  .contact-links svg{ width:18px; height:18px; fill:currentColor; flex-shrink:0; }
+  /* logos de marca: colores propios, no heredan currentColor. El viewBox del de Gmail
+     va recortado al dibujo para que pese lo mismo que el cuadrado de LinkedIn */
+  .contact-links svg{ flex-shrink:0; }
+  .contact-links .ico-gmail{ width:22px; height:17px; }
+  .contact-links .ico-li{ width:18px; height:18px; }
   .contact-links a span{ border-bottom:1px solid var(--line); padding-bottom:2px; transition:border-color 0.15s; }
   .contact-links a:hover{ color:var(--accent); }
   .contact-links a:hover span{ border-color:var(--accent); }
@@ -354,8 +357,8 @@
       <h2>Let's talk</h2>
     </div>
     <div class="contact-links">
-      <a href="mailto:eteixeiradesign@gmail.com"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm1.7 2L12 12.1 19.3 7H4.7ZM20 8.4l-7.4 5.2a1 1 0 0 1-1.2 0L4 8.4V17h16V8.4Z"/></svg><span>eteixeiradesign@gmail.com</span></a>
-      <a href="https://www.linkedin.com/in/emilyteixeira-productdesigner/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13Zm1.78 13.02H3.56V9h3.56v11.45ZM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0Z"/></svg><span>LinkedIn</span></a>
+      <a href="mailto:eteixeiradesign@gmail.com"><svg class="ico-gmail" viewBox="3 8 42 32" aria-hidden="true" focusable="false"><path fill="#4CAF50" d="M45 16.2l-5 2.75-5 4.75L35 40h7a3 3 0 0 0 3-3V16.2z"/><path fill="#1E88E5" d="M3 16.2l3.614 1.71L13 23.7V40H6a3 3 0 0 1-3-3V16.2z"/><polygon fill="#E53935" points="35,11.2 24,19.45 13,11.2 12,17 13,23.7 24,31.95 35,23.7 36,17"/><path fill="#C62828" d="M3 12.298V16.2l10 7.5V11.2L9.876 8.859A4.298 4.298 0 0 0 3 12.298z"/><path fill="#FBC02D" d="M45 12.298V16.2l-10 7.5V11.2l3.124-2.341A4.298 4.298 0 0 1 45 12.298z"/></svg><span>eteixeiradesign@gmail.com</span></a>
+      <a href="https://www.linkedin.com/in/emilyteixeira-productdesigner/" target="_blank" rel="noopener noreferrer"><svg class="ico-li" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#0A66C2" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13Zm1.78 13.02H3.56V9h3.56v11.45ZM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0Z"/></svg><span>LinkedIn</span></a>
     </div>
   </section>
 
